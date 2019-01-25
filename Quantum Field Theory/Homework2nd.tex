@@ -1,0 +1,484 @@
+% XeLaTeX can use any Mac OS X font. See the setromanfont command below.
+% Input to XeLaTeX is full Unicode, so Unicode characters can be typed directly into the source.
+
+% The next lines tell TeXShop to typeset with xelatex, and to open and save the source with Unicode encoding.
+
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[12pt]{article}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath,bm}           % 数学符号与特殊字符，其中\bm表示黑体公式
+\usepackage{ragged2e}          % 两端对齐
+\usepackage{color}             	% 字体颜色
+\usepackage{indentfirst}		% 首行缩进
+\geometry{left=1.5cm,right=2.5cm,top=2.0cm,bottom=2.5cm}
+\usepackage{setspace}		%使用间距宏包
+\usepackage{simplewick}		% 场论中收缩符号专用宏包，非必要
+
+% Will Robertson's fontspec.sty can be used to simplify font choices.
+% To experiment, open /Applications/Font Book to examine the fonts provided on Mac OS X,
+% and change "Hoefler Text" to any of these choices.
+
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont[Mapping=tex-text]{Hoefler Text}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+\title{\textbf{Quantum Feild Theory Homework}}
+\author{\emph{Surilige Dhalenguite} \and \emph{Bingkai Sheng}}
+%\date{}                                           % Activate to display a given date or no date
+
+
+\begin{document}
+\maketitle
+\setlength{\parindent}{0pt}	% 取消首行缩进，如果需要缩进，则将0pt设置为所需数量的pt，一般为2pt
+\begin{spacing}{1.5}		% 行间距变为double-space
+% For many users, the previous commands will be enough.
+% If you want to directly input Unicode, add an Input Menu or Keyboard to the menu bar 
+% using the International Panel in System Preferences.
+% Unicode must be typeset using a font containing the appropriate characters.
+% Remove the comment signs below for examples.
+
+% \newfontfamily{\A}{Geeza Pro}
+% \newfontfamily{\H}[Scale=0.9]{Lucida Grande}
+% \newfontfamily{\J}[Scale=0.85]{Osaka}
+\newcommand*{\dif}{\mathop{}\!\mathrm{d}} 		% \mathop{}用来输出直立黑体的微分算子，如\mathop{d}，为了简略我们使用\dif代替\mathop{d}
+
+
+% 第一题
+\textbf{1. Consider $\psi^{\top}(x)C\Gamma\psi(x)$, which $C=i\gamma_{0}\gamma_{2}$. Analysis $\psi^{\top}(x)C\Gamma\psi(x)$ under the Lorentz transformation.} \\		% \top是转置符号
+~\\
+\textbf{Answer\,:} $\displaystyle\dif{x'}^{\mu}=\frac{\partial{x'^{\mu}}}{\partial{x^{\nu}}}\equiv\Lambda^{\mu}_{\;\nu}\dif{x}^{\nu}$, $\det(\Lambda^{\mu}_{\;\nu})=1$, $(\gamma^{0})^{\top}=\gamma^{0}$, $(\gamma^{1})^{\top}=-\gamma^{1}$, $(\gamma^{2})^{\top}=\gamma^{2}$, $(\gamma^{3})^{\top}=-\gamma^{3}$; 	
+				% \displaystyle使各字母或符号达到适当大小
+$\psi'(x')=S\psi(x)$, $S^{-1}\gamma^{\mu}S=\Lambda^{\mu}_{\;\nu}\gamma^{\nu}$, $S^{\dagger}=\gamma^{0}S^{-1}\gamma^{0}$, $S^{*}=\gamma^{0}\gamma^{1}\gamma^{3}S\gamma^{3}\gamma^{1}\gamma^{0}$.\\
+~\\
+(1) $\Gamma=I_{4\times4}$\\
+We can write the Lorentz transformation below :
+\begin{equation}
+\displaystyle\psi'^{\top}(x')C\psi'(x')=\psi^{\top}(x)S^{\top}i\gamma_{0}\gamma_{2}S\psi(x)=-\psi^{\top}(x)S^{\top}i\gamma^{0}\gamma^{2}S\psi(x)
+	\tag{1.1.1}
+\end{equation}
+So we have :\\
+\begin{equation}
+\begin{aligned} 	% 依照等号对齐，需要对齐的等号前加上&即可
+S^{\dagger} &= {S^{*}}^{\dagger} =(\gamma^{0}\gamma^{1}\gamma^{3}S\gamma^{3}\gamma^{1}\gamma^{0})^{\top}=(\gamma^{0})^{\top}(\gamma^{1})^{\top}(\gamma^{3})^{\top}S(\gamma^{3})^{\top}(\gamma^{1})^{\top}(\gamma^{0})^{\top} \\
+&=\gamma^{0}(-\gamma^{1})(-\gamma^{3})S^{\top}(-\gamma^{3})(-\gamma^{1})\gamma^{0} \\
+&=\gamma^{0}S^{-1}\gamma^{0}
+\end{aligned}
+	\tag{1.1.2}
+\end{equation}
+So we can get $\gamma^{1}\gamma^{3}S^{\top}\gamma^{3}\gamma^{1}=S^{-1}$. Then we'll get $S^{\top}=\gamma^{3}\gamma^{1}S^{-1}\gamma^{1}\gamma^{3}$.\\
+Substitute Equ.1.1.2 into Equ.1.1.1:
+\begin{equation}
+\begin{aligned}
+\displaystyle \psi'^{\top}(x')C\psi'(x') &= -\psi^{\top}(x)\gamma^{3}\gamma^{1}S^{-1}\gamma^{1}\gamma^{3}i\gamma^{0}\gamma^{2}S\psi(x)=\psi^{\top}(x)\gamma^{3}\gamma^{1}S^{-1}i\gamma^{0}\gamma^{1}\gamma^{2}\gamma^{3}S\psi(x) \\
+&=\psi^{\top}(x)\gamma^{3}\gamma^{1}S^{-1}\gamma^{5}S\psi(x)
+\end{aligned}
+	\tag{1.1.3}
+\end{equation}
+For
+\begin{equation}
+S^{-1}\gamma^{5}S=\det(\Lambda^{\mu}_{\;\nu})\gamma^{5}=\gamma^{5}
+	\tag{1.1.4}
+\end{equation}
+So we have $\psi'^{\top}(x')C\psi'(x')=\psi^{\top}(x)\gamma^{3}\gamma^{1}\gamma^{5}\psi(x)$, of which
+\begin{equation}
+\begin{aligned} 
+\displaystyle\gamma^{3}\gamma^{1}\gamma^{5} &= \gamma^{3}\gamma^{1}(i\gamma^{0}\gamma^{1}\gamma^{2}\gamma^{3})=-i\gamma^{0}(\gamma^{1})^{2}\gamma^{2}(\gamma^{3})^{2}\\
+&=-i\gamma^{0}\gamma^{2}=i\gamma_{0}\gamma_{2}=C
+\end{aligned}	\tag{1.1.5}
+\end{equation}
+We can finally get $\psi'^{\top}(x')C\psi'(x')=\psi^{\top}(x)C\psi(x)$ when $\Gamma=I_{4\times4}$.\\
+~\\
+~\\
+(2) $\Gamma=\gamma^{\mu}$\\
+\begin{equation}
+\begin{aligned}
+\displaystyle \psi'^{\top}(x')\gamma^{\mu}C\psi'(x')  &= \psi^{\top}(x)S^{\top}\gamma^{\mu}CS\psi(x)=\psi^{\top}(x)\gamma^{3}\gamma^{1}S^{-1}\gamma^{1}\gamma^{3}\gamma^{\mu}i\gamma_{0}\gamma_{2}\psi(x) \\
+&= -\psi^{\top}(x)\gamma^{3}\gamma^{1} S^{-1}\gamma^{1}\gamma^{3}\gamma^{\mu} i\gamma^{0}\gamma^{2} S\psi(x)
+\end{aligned}	\tag{1.2.1}
+\end{equation}
+When $\mu=0, 2$ \\
+\begin{equation}
+\begin{aligned}
+\displaystyle \psi'^{\top}(x')\gamma^{\mu}C\psi'(x')  &= -\psi^{\top}(x)\gamma^{3}\gamma^{1}S^{-1}\gamma^{\mu}i\gamma^{1}\gamma^{3}\gamma^{0}\gamma^{2}S\psi(x) \\
+&= \psi^{\top}(x)\gamma^{3}\gamma^{1}S^{-1}\gamma^{\mu}i\gamma^{0}\gamma^{1}\gamma^{2}\gamma^{3}S\psi(x) \\
+&= \psi^{\top}(x)\gamma^{3}\gamma^{1}S^{-1}\gamma^{\mu}\gamma^{5}S\psi(x) \\
+&= -\psi^{\top}(x)\gamma^{3}\gamma^{1}S^{-1}\gamma^{5}\gamma^{\mu}S\psi(x) \\
+&= -\psi^{\top}(x)\gamma^{3}\gamma^{1}\gamma^{5}\Lambda^{\mu}_{\;\nu}\gamma^{nu}S\psi(x) \\
+&= -\Lambda^{\mu}_{\;\nu}\psi^{\top}(x)C\gamma^{\nu}\psi(x)
+\end{aligned}	\tag{1.2.2}
+\end{equation}
+For \;$C\gamma^{\nu}=-i\gamma^{0}\gamma^{2}\gamma^{\nu}$\; and $\{\gamma^{\mu},\gamma^{\nu}\}=\gamma^{\mu}\gamma^{\nu}+\gamma^{\nu}\gamma^{\mu}=2g^{\mu\nu}I_{4\times4}$\;,\\
+We have
+\begin{equation}
+\begin{aligned}
+\displaystyle  C\gamma^{\nu} &= -i\gamma^{0}(2g^{2\nu}I_{4\times4}-\gamma^{\nu}\gamma^{2})=-2i g^{2\nu}\gamma^{0}+i(2g^{0\nu} I_{4 \times 4}-\gamma^{\nu}\gamma^{0})\gamma^{2} \\
+&=i\cdot2(g^{0\nu}\gamma^{2}-g^{2\nu}\gamma^{0})+\gamma^{\nu}C		% \cdot为小圆点
+\end{aligned}	\tag{1.2.3}
+\end{equation}
+So we can say
+\begin{equation}
+\psi'^{\top}(x')\gamma^{\mu}C\psi'(x')=-\Lambda^{\mu}_{\;\nu}\left[i\cdot2\psi^{\top}(x)(g^{0\nu}\gamma^{2}-g^{2\nu}\gamma^{0})\psi(x)+\psi^{\top}(x)\gamma^{\mu}C\psi(x)\right]		\tag{1.2.4}
+\end{equation}
+As the same goes, when $\mu=1, 3$ \\
+\begin{equation}
+\psi'^{\top}(x')\gamma^{\mu}C\psi'(x')=\Lambda^{\mu}_{\;\nu}[i\cdot2\psi^{\top}(x)(g^{0\nu}\gamma^{2}-g^{2\nu}\gamma^{0})\psi(x)+\psi^{\top}(x)\gamma^{\mu}C\psi(x)]	
+	\tag{1.2.5}
+\end{equation}
+We can get the flowing conclusion :
+\begin{equation}
+\psi'^{\top}(x')\gamma^{\mu}C\psi'(x')=\left\{		% 大括号公式的写法
+\begin{aligned}
+-\Lambda^{\mu}_{\;\nu}\left[i\cdot2\psi^{\top}(x)(g^{0\nu}\gamma^{2}-g^{2\nu}\gamma^{0})\psi(x)+\psi^{\top}(x)\gamma^{\mu}C\psi(x)\right] \quad \mu=0, 2\\
+\Lambda^{\mu}_{\;\nu}\left[i\cdot2\psi^{\top}(x)(g^{0\nu}\gamma^{2}-g^{2\nu}\gamma^{0})\psi(x)+\psi^{\top}(x)\gamma^{\mu}C\psi(x)\right] \quad \mu=1, 3\\
+\end{aligned}
+\right.	% 注意这个点不要拉下\right.
+	\tag{1.2.6}
+\end{equation}
+~\\
+Because $C=i\gamma_{0}\gamma_{2}$, \\
+\begin{equation}
+\begin{aligned}
+\psi'^{\top}(x')C\gamma^{\mu}\psi'(x') &= \psi^{\top}(x)S^{\top}C\gamma^{\mu}S\psi(x) =\psi^{\top}(x)\gamma^{3}\gamma^{1}S^{-1}\gamma^{1}\gamma^{3}i\gamma^{0}\gamma^{2}\gamma^{\mu}S\psi(x)\\
+&= \psi^{\top}(x)\gamma^{3}\gamma^{1}S^{-1}\gamma^{5}\gamma^{\mu}\psi(x) \\
+&= \psi^{\top}(x)\gamma^{3}\gamma^{1}(S^{-1}\gamma^{5}S)(S^{-1}\gamma^{\mu}S)\psi(x) \\
+&= \Lambda^{\mu}_{\;\nu}\psi^{\top}(x)C\gamma^{\nu}\psi(x)
+\end{aligned}	\tag{1.2.7}
+\end{equation}
+So we can finally get $\psi'^{\top}(x')\gamma^{\mu}C\psi'(x')=\Lambda^{\mu}_{\;\nu}\psi^{\top}(x)C\gamma^{\nu}\psi(x)$ when $\Gamma=\gamma^{\mu}$.\\
+~\\
+~\\
+(3) $\displaystyle \Gamma=\sigma^{\mu\nu}=\frac{i}{2}[\gamma^{\mu},\gamma^{\nu}]$ \\ 
+\begin{equation}
+\begin{aligned}
+\displaystyle \psi'^{\top}(x')C\sigma^{\mu\nu}\psi'(x') &= \psi^{\top}(x)S^{\top}C\sigma^{\mu\nu}S\psi(x)=\frac{i}{2}\psi^{\top}(x)S^{\top}C(\gamma^{\mu}\gamma^{\nu}-\gamma^{\nu}\gamma^{\mu})S\psi(x) \\
+&= \frac{i}{2}(\psi^{\top}(x)S^{\top}C\gamma^{\mu}\gamma^{\nu}S\psi(x)-\psi^{\top}(x)S^{\top}C\gamma^{\nu}\gamma^{\mu}S\psi(x))
+\end{aligned}	\tag{1.3.1}
+\end{equation}
+We should calculate $\psi^{\top}(x)S^{\top}C\gamma^{\mu}\gamma^{\nu}S\psi(x)$ and $\psi^{\top}(x)S^{\top}C\gamma^{\nu}\gamma^{\mu}S\psi(x)$ first :
+\begin{equation}
+\begin{aligned}
+\displaystyle \psi^{\top}(x)S^{\top}C\gamma^{\mu}\gamma^{\nu}S\psi(x) &= \psi^{\top}(x)\gamma^{3}\gamma^{1}S^{-1}i\gamma^{0}\gamma^{1}\gamma^{2}\gamma^{3}\gamma^{\mu}\gamma^{\nu}S\psi(x) \\
+&=\Lambda^{\mu}_{\;\alpha}\Lambda^{\nu}_{\;\beta}\psi^{\top}(x)C\gamma^{\alpha}\gamma^{\beta}\psi(x)
+\end{aligned}	\tag{1.3.2}	
+\end{equation}
+\begin{equation}
+\begin{aligned}
+\displaystyle \psi^{\top}(x)S^{\top}C\gamma^{\nu}\gamma^{\mu}S\psi(x) &= -\psi^{\top}(x)\gamma^{3}\gamma^{1}S^{-1}\gamma^{1}\gamma^{3}i\gamma^{0}\gamma^{2}\gamma^{\mu}\gamma^{\nu}S\psi(x) \\
+&=\Lambda^{\mu}_{\;\alpha}\Lambda^{\nu}_{\;\beta}\psi^{\top}(x)C\gamma^{\beta}\gamma^{\alpha}\psi(x)
+\end{aligned}	\tag{1.3.3}	
+\end{equation}
+Then substitute Equ.1.3.2 and Equ.1.3.3 into Equ.1.3.1, we'll get :
+\begin{align*}
+\psi'^{\top}(x')C\sigma^{\mu\nu}\psi'(x') &= \frac{i}{2}(\Lambda^{\mu}_{\;\alpha}\Lambda^{\nu}_{\;\beta}\psi^{\top}(x)C\gamma^{\alpha}\gamma^{\beta}\psi(x)-\Lambda^{\mu}_{\;\alpha}\Lambda^{\nu}_{\;\beta}\psi^{\top}(x)C\gamma^{\beta}\gamma^{\alpha}\psi(x))\\
+&=\frac{i}{2}\Lambda^{\mu}_{\;\alpha}\Lambda^{\nu}_{\;\beta}\psi^{\top}(x)C(\gamma^{\alpha}\gamma^{\beta}-\gamma^{\beta}\gamma^{\alpha})\psi(x)\\
+&=\Lambda^{\mu}_{\;\alpha}\Lambda^{\nu}_{\;\beta}\psi^{\top}(x)C\sigma^{\alpha\beta}\psi(x)
+	\tag{1.3.4}	
+\end{align*}
+We can finally get $\displaystyle \psi'^{\top}(x')C\sigma^{\mu\nu}\psi'(x')=\Lambda^{\mu}_{\;\alpha}\Lambda^{\nu}_{\;\beta}\psi^{\top}(x)C\sigma^{\alpha\beta}\psi(x)$ when $\displaystyle \Gamma=\sigma^{\mu\nu}=\frac{i}{2}[\gamma^{\mu},\gamma^{\nu}]$\\
+~\\
+~\\
+(4) $\Gamma=\gamma^{\mu}\gamma^{5}$\\
+\begin{equation}
+\begin{aligned}
+\displaystyle \psi'^{\top}(x')C\gamma^{\mu}\gamma^{5}\psi'(x') &=\psi^{\top}(x)S^{\top}C\gamma^{\mu}\gamma^{5}S\psi(x)=-\psi^{\top}(x)\gamma^{3}\gamma^{1}S^{-1}\gamma^{1}\gamma^{3}i\gamma^{0}\gamma^{2}\gamma^{\mu}\gamma^{5}S\psi(x) \\
+&=\psi^{\top}(x)\gamma^{3}\gamma^{1}S^{-1}\gamma^{s}\gamma^{\mu}\gamma^{5}S\psi(x)=\psi^{\top}(x)\gamma^{3}\gamma^{1}\gamma^{5}\Lambda^{\mu}_{\;\nu}\gamma^{\nu}\gamma^{5}S\psi(x)
+\end{aligned}		\tag{1.4.1}
+\end{equation}
+Then we have
+\begin{equation}
+\psi'^{\top}(x')C\gamma^{\mu}\gamma^{5}\psi'(x')=\Lambda^{\mu}_{\;\nu}\psi^{\top}(x)C\gamma^{\nu}\gamma^{5}\psi(x)
+		\tag{1.4.2}
+\end{equation}
+We can finally get $\psi'^{\top}(x')C\gamma^{\mu}\gamma^{5}\psi'(x')=\Lambda^{\mu}_{\;\nu}\psi^{\top}(x)C\gamma^{\nu}\gamma^{5}\psi(x)$ when $\Gamma=\gamma^{\mu}\gamma^{5}$.\\
+~\\
+~\\
+(5) $\Gamma=\gamma^{5}$
+\begin{equation}
+\begin{aligned}
+\displaystyle \psi'^{\top}(x')C\gamma^{5}\psi'(x') &=\psi^{\top}(x)S^{\top}C\gamma^{5}S\psi(x)=-\psi^{\top}(x)\gamma^{3}\gamma^{1}S^{-1}\gamma^{1}\gamma^{3}i\gamma^{0}\gamma^{2}\gamma^{5}S\psi(x) \\
+&=\psi^{\top}(x)\gamma^{3}\gamma^{1}S^{-1}\gamma^{5}\gamma^{5}S\psi(x)= \psi^{\top}(x)\gamma^{3}\gamma^{1}\gamma^{5}\gamma^{5}S\psi(x)\\
+&=\psi^{\top}(x)C\gamma^{5}\psi(x)
+\end{aligned}	\tag{1.5.1}
+\end{equation}
+We can finally get $\psi'^{\top}(x')C\gamma^{5}\psi'(x')=\psi^{\top}(x)C\gamma^{5}\psi(x)$ when $\Gamma=\gamma^{5}$.\\
+~\\
+~\\
+~\\
+
+
+
+
+% 第二题
+% \iffalse 	% 多行注释，\iffalse和\fi之间被注释掉
+% \fi			% 多行注释，\iffalse和\fi之间被注释掉
+\textbf{2. Analyze the spin of Dirac field .}\\
+~\\
+\textbf{Answer\,:} We make $S_{i}$ to represent the component of spin angular momentum on the $\bm{\hat e_{i}}$-axis, so we have 	% \bm表示黑体公式
+\begin{equation}
+\displaystyle 
+s_{3}=\pi_{a}S^{12}_{ab}\psi_{b}=\pi_{a}(\frac{1}{2}\gamma^{1}\gamma^{2})\psi_{b}=-\frac{i}{2}\pi_{a}(\Sigma_{3})_{ab}\psi_{b}
+	\tag{2.1.1}
+\end{equation}
+Equ.2.1.1 describes the the spin density of fermions.
+~\\
+~\\
+
+(1) Fermion \\
+For $\pi_{a}=i\psi^{*}_{a}$, we have $\displaystyle s_{3}=\frac{1}{2}\psi^{*}_{a}(\Sigma_{3})_{ab}\psi_{b}$ , then we'll get $S_{3}$ :
+\begin{equation}
+\displaystyle 
+S_{3}=\int\dif^{3}xs_{3}=\int\dif^{3}x\frac{1}{2}\psi^{*}_{a}(\Sigma_{3})_{ab}\psi_{b}
+	\tag{2.1.2}
+\end{equation}
+For quantized Dirac field, we have
+\begin{equation}
+\displaystyle 
+\hat S_{3}=\int\dif^{3}x\frac{1}{2}\hat\psi^{\dagger}_{a}(\Sigma_{3})_{ab}\hat\psi_{b}
+	\tag{2.1.3}
+\end{equation}
+which
+\begin{equation}
+\displaystyle 
+\hat\psi_{a}(\bm x,0)=\int \frac{\dif^{3} p}{(2\pi)^{3}}\frac{1}{\sqrt{2E_{\bm p}}}e^{i\bm p \cdot \bm x}\sum\limits_{s=1}^{2}\left[\hat a^{s}_{\bm p}u^{s}_{a}(\bm p)+\hat b^{s\dagger}_{\bm{-p}}v^{s}_{a}(\bm{-p})\right]
+	\tag{2.1.4}
+\end{equation}
+and
+\begin{equation}
+\displaystyle 
+\hat\psi^{\dagger}_{a}(\bm x,0)=\int \frac{\dif^{3} p}{(2\pi)^{3}}\frac{1}{\sqrt{2E_{\bm p}}}e^{-i\bm p \cdot \bm x}\sum\limits_{s=1}^{2}\left[\hat a^{s\dagger}_{\bm p}u^{s*}_{a}(\bm p)+\hat b^{s}_{\bm{-p}}v^{s*}_{a}(\bm{-p})\right]
+	\tag{2.1.5}
+\end{equation}
+for $t=0$, $\bm p$ is 3-momentum, then we can factor $e^{\pm i\bm p \cdot \bm x}$ out before the sum.\\
+Substitute  Equ.2.4 and Equ.2.5 into Equ.2.3, we'll get the expansion of $S_{3}$ :	% 注意此处我对过长的公式的操作，网上方法很多，但我觉得这是最简便的一种
+\begin{equation}
+\begin{aligned}	
+\hat S_{3} &= \int\dif^{3}x \int \frac{\dif^{3} p'}{(2\pi)^{3}}\frac{1}{\sqrt{2E_{\bm p'}}}e^{i\bm p' \cdot \bm x}\sum\limits_{s'=1}^{2}\left[\hat a^{s'}_{\bm p}u^{s'}_{a}(\bm p')+\hat b^{s'\dagger}_{\bm{-p'}}v^{s'}_{a}(\bm{-p'})\right] \\ & \times \frac{1}{2}(\Sigma_{3})_{ab} \int \frac{\dif^{3} p}{(2\pi)^{3}}\frac{1}{\sqrt{2E_{\bm p}}}e^{-i\bm p \cdot \bm x}\sum\limits_{s=1}^{2}\left[\hat a^{s\dagger}_{\bm p}u^{s*}_{b}(\bm p)+\hat b^{s}_{\bm{-p}}v^{s*}_{b}(\bm{-p})\right]\\
+&= \int\dif^{3}x \int \frac{\dif^{3} p'\dif^{3} p}{(2\pi)^{6}}\frac{1}{\sqrt{2E_{\bm p'}2E_{\bm p}}} e^{i\bm p' \cdot \bm x} e^{-i\bm p \cdot \bm x} \sum\limits_{s,s'}\left[\hat a^{s'}_{\bm p}u^{s'}_{a}(\bm p')+\hat b^{s'\dagger}_{\bm{-p'}}v^{s'}_{a}(\bm{-p'})\right]\\ & \times \frac{1}{2}(\Sigma_{3})_{ab} \left[\hat a^{s\dagger}_{\bm p}u^{s*}_{b}(\bm p)+\hat b^{s}_{\bm{-p}}v^{s*}_{b}(\bm{-p})\right] \\
+\end{aligned}
+	\tag{2.1.6}
+\end{equation}
+Suppose $\displaystyle \textcircled{1}=\sum\limits_{s,s'}\left[\hat a^{s'}_{\bm p}u^{s'}_{a}(\bm p')+\hat b^{s'\dagger}_{\bm{-p'}}v^{s'}_{a}(\bm{-p'})\right] \times \frac{1}{2}(\Sigma_{3})_{ab} \left[\hat a^{s\dagger}_{\bm p}u^{s*}_{b}(\bm p)+\hat b^{s}_{\bm{-p}}v^{s*}_{b}(\bm{-p})\right]$ ,\\
+so
+\begin{equation}
+\begin{aligned}
+\textcircled{1} &= \frac{1}{2}(\Sigma_{3})_{ab} \sum\limits_{s,s'}\left[\hat a^{s'}_{\bm p}u^{s'}_{a}(\bm p')+\hat b^{s'\dagger}_{\bm{-p'}}v^{s'}_{a}(\bm{-p'})\right]  \left[\hat a^{s\dagger}_{\bm p}u^{s*}_{b}(\bm p)+\hat b^{s}_{\bm{-p}}v^{s*}_{b}(\bm{-p})\right] \\
+&= \frac{1}{2}(\Sigma_{3})_{ab} \sum\limits_{s,s'} \left[ { \hat a^{s'}_{\bm p}u^{s'}_{a}(\bm p')\hat a^{s\dagger}_{\bm p}u^{s*}_{b}(\bm p)+\hat b^{s'\dagger}_{\bm{-p'}}v^{s'}_{a}(\bm{-p'})\hat a^{s\dagger}_{\bm p}u^{s*}_{b}(\bm p)+ } \right. \\ & \left. { \hat a^{s'}_{\bm p}u^{s'}_{a}(\bm p')\hat b^{s}_{\bm{-p}}v^{s*}_{b}(\bm{-p})+\hat b^{s'\dagger}_{\bm{-p'}}v^{s'}_{a}(\bm{-p'})\hat b^{s}_{\bm{-p}}v^{s*}_{b}(\bm{-p}) } \right] \\
+\end{aligned}
+	\tag{2.1.7}
+\end{equation}
+When $\bm p=\bm0$
+\begin{equation}
+\hat S_{3} \hat a^{s\dagger}_{\bm0} \left|0\right> = \int\dif^{3}x\int \frac{\dif^{3} p'}{(2\pi)^{3}}\frac{1}{\sqrt{2E_{\bm p'}2E_{\bm p}}}e^{i\bm p' \cdot \bm x}e^{-i\bm p \cdot \bm x} \textcircled{1} \hat a^{s\dagger}_{\bm0} \left|0\right>
+	\tag{2.1.8}
+\end{equation}
+and
+\begin{equation}
+\begin{aligned}
+\textcircled{1}\hat a^{s\dagger}_{\bm0} \left|0\right> 
+&= \frac{1}{2}(\Sigma_{3})_{ab} \sum\limits_{s,s'} \left[ { \hat a^{s'}_{\bm p}u^{s'}_{a}(\bm p')\hat a^{s\dagger}_{\bm p}u^{s*}_{b}(\bm p)\hat a^{s\dagger}_{\bm0} \left|0\right> +\hat b^{s'\dagger}_{\bm{-p'}}v^{s'}_{a}(\bm{-p'})\hat a^{s\dagger}_{\bm p}u^{s*}_{b}(\bm p)\hat a^{s\dagger}_{\bm0} \left|0\right> } \right. \\ & \left. { + \hat a^{s'}_{\bm p}u^{s'}_{a}(\bm p')\hat b^{s}_{\bm{-p}}v^{s*}_{b}(\bm{-p})\hat a^{s\dagger}_{\bm0} \left|0\right> +\hat b^{s'\dagger}_{\bm{-p'}}v^{s'}_{a}(\bm{-p'})\hat b^{s}_{\bm{-p}}v^{s*}_{b}(\bm{-p})\hat a^{s\dagger}_{\bm0} \left|0\right> } \right] \\
+\end{aligned}
+	\tag{2.1.9}
+\end{equation}
+of which
+\begin{equation}
+\{ \hat a^{r}_{\bm p}, \hat a^{s\dagger}_{\bm q} \}=\{ \hat b^{r}_{\bm p}, \hat b^{s\dagger}_{\bm q} \}=(2\pi)^{3}\delta^{3}(\bm p-\bm q)\delta_{rs}
+	\tag{2.1.10}
+\end{equation}
+So 
+\begin{equation}
+\hat S_{3}\hat a^{s\dagger}_{\bm0} \left|0\right> = \frac{1}{2} \int \frac{\dif^{3} p}{(2\pi)^{3}}\frac{1}{2E_{\bm p}} (-1)^{s+1}2E_{\bm p}(2\pi)^{3}\delta^{3}(\bm p) \hat a^{s\dagger}_{\bm p} \left|0\right> = \frac{(-1)^{s+1}}{2}\hat a^{s\dagger}_{\bm 0} \left|0\right>
+	\tag{2.1.11}
+\end{equation}
+For positive fermion field, we have $\displaystyle \hat S_{3}\hat a^{1\dagger}_{\bm0} \left|0\right> = \frac{1}{2} \hat a^{1\dagger}_{\bm0} \left|0\right> $ , and $\displaystyle \hat S_{3}\hat a^{2\dagger}_{\bm0} \left|0\right> = -\frac{1}{2} \hat a^{2\dagger}_{\bm0} \left|0\right> $ .\\
+~\\
+~\\
+
+(2) Antifermion \\
+As the same goes, we can get\\
+\begin{equation}
+\hat S_{3}\hat b^{s\dagger}_{\bm0} \left|0\right> = \int\dif^{3}x\int \frac{\dif^{3} p'}{(2\pi)^{3}}\frac{1}{\sqrt{2E_{\bm p'}2E_{\bm p}}}e^{i\bm p' \cdot \bm x}e^{-i\bm p \cdot \bm x} \textcircled{1} \hat b^{s\dagger}_{\bm0} \left|0\right>
+	\tag{2.2.1}
+\end{equation}
+and
+\begin{equation}
+\begin{aligned}
+\textcircled{1}\hat b^{s\dagger}_{\bm0} \left|0\right>  
+&= \frac{1}{2}(\Sigma_{3})_{ab} \sum\limits_{s,s'} \left[ { \hat a^{s'}_{\bm p}u^{s'}_{a}(\bm p')\hat a^{s\dagger}_{\bm p}u^{s*}_{b}(\bm p)\hat b^{s\dagger}_{\bm0} \left|0\right>  +\hat b^{s'\dagger}_{\bm{-p'}}v^{s'}_{a}(\bm{-p'})\hat a^{s\dagger}_{\bm p}u^{s*}_{b}(\bm p)\hat b^{s\dagger}_{\bm0} \left|0\right> } \right. \\ & \left. { + \hat a^{s'}_{\bm p}u^{s'}_{a}(\bm p')\hat b^{s}_{\bm{-p}}v^{s*}_{b}(\bm{-p})\hat b^{s\dagger}_{\bm0} \left|0\right> +\hat b^{s'\dagger}_{\bm{-p'}}v^{s'}_{a}(\bm{-p'})\hat b^{s}_{\bm{-p}}v^{s*}_{b}(\bm{-p})\hat b^{s\dagger}_{\bm0} \left|0\right> } \right] 
+\end{aligned}
+	\tag{2.2.2}
+\end{equation}
+So we have
+\begin{equation}
+\begin{aligned}
+\hat S_{3}\hat b^{s\dagger}_{\bm0} \left|0\right> &= -\frac{1}{2} \int \frac{\dif^{3} p}{(2\pi)^{3}}\frac{1}{2E_{\bm p}} (-1)^{s+1}2E_{\bm p}(2\pi)^{3}\delta^{3}(\bm p) \hat b^{s\dagger}_{\bm{-p}} \left|0\right> = -\frac{(-1)^{s+1}}{2}\hat b^{s\dagger}_{\bm 0} \left|0\right> \\
+&=\frac{(-1)^{s}}{2}\hat b^{s\dagger}_{\bm 0} \left|0\right>
+\end{aligned}
+	\tag{2.2.3}
+\end{equation}
+For negative fermion field, we have $\displaystyle \hat S_{3}\hat b^{1\dagger}_{\bm0} \left|0\right> = -\frac{1}{2} \hat b^{1\dagger}_{\bm0} \left|0\right>$ , and $\displaystyle \hat S_{3}\hat b^{2\dagger}_{\bm0} \left|0\right> = \frac{1}{2} \hat b^{2\dagger}_{\bm0} \left|0\right> $ .\\
+~\\
+~\\
+~\\
+
+
+
+\textbf{3. Prove : (1) $\displaystyle C\bar\psi\gamma^{\mu}\psi C = -\bar\psi\gamma^{\mu}\psi$; \quad (2) $\displaystyle C\bar\psi\gamma^{\mu}\gamma^{5}\psi C = \bar\psi\gamma^{\mu}\gamma^{5}\psi$; \quad (3) $\displaystyle C\bar\psi\sigma^{\mu\nu}\psi C = -\bar\psi\sigma^{\mu\nu}\psi$, which $C$ is unitary linear operator  to represent charge conjugation.} \\		% \bar为字母正上方加一条短线
+~\\
+\textbf{Proof\,:} We have $\displaystyle \bar\psi=\psi^{\dagger}\gamma^{0}$, and $\displaystyle (\gamma^{5})^{\top}=\gamma^{5}$\\	% \top是转置符号
+~\\
+For bilinear Dirac field under charge conjugation transformation, we have $C\psi C = (-i\bar\psi\gamma^{0}\gamma^{2})^{\top}$, and $C\bar\psi C = (-i\gamma^{0}\gamma^{2}\psi)^{\top}$
+\begin{align*}
+C\bar\psi\psi C &= C\bar\psi CC \psi C = (-i\bar\psi\gamma^{0}\gamma^{2})^{\top} (-i\gamma^{0}\gamma^{2}\psi)^{\top} \\
+&= - (\gamma^{0}\gamma^{2}\psi)^{\top}_{a} (\bar\psi\gamma^{0}\gamma^{2})^{\top}_{a} = - \gamma^{0}_{ab}\gamma^{2}_{bc}\psi_{c} \bar\psi_{d}\gamma^{0}_{de}\gamma^{2}_{ea} \\
+&= - \gamma^{0}_{ab}\gamma^{2}_{bc}\psi_{c} \psi_{e}^{\dag}\gamma^{2}_{ea} \\
+&= - \gamma^{0}_{ab}\gamma^{2}_{bc}\gamma^{2}_{ea} \left[ \{\psi_{c}(x),\psi_{e}^{\dag}(x)\} - \psi_{e}^{\dag}(x)\psi_{c}(x) \right] \\
+&= - \gamma^{0}_{ab}\gamma^{2}_{bc}\gamma^{2}_{ca}\delta^{(3)}(\bm0) + \gamma^{2}_{ea}\psi^{\dag}_{e}(x)\gamma^{0}_{ab}\gamma^{2}_{bc}\psi_{c}(x) \\
+&= \gamma^{0} \delta^{(3)}(\bm0) + \bar\psi(x)\gamma^{0}\gamma^{2}\gamma^{0}\gamma^{2}\psi(x)
+\end{align*}
+Therefore $\displaystyle C\bar\psi\psi C = \bar\psi\psi$. As the same goes, we have\\
+~\\
+(1) 
+\begin{align*}
+	C\bar\psi\gamma^{\mu}\psi C &= (-i\gamma^{0}\gamma^{2}\psi)^{\top}\gamma^{\mu}(-i\bar\psi\gamma^{0}\gamma^{2})^{\top}\\
+	&= -\psi_{b} (\gamma^{2})^{\top}_{bc}(\gamma^{0})^{\top}_{ca} \gamma^{\mu}_{ab} (\gamma^{2})^{\top}_{bd} \psi^{\dagger}_{d} \\
+	&= \psi^{\dagger}_{d} \gamma^{2}_{db} (\gamma^{\mu})^{\top}_{ba} \gamma^{0}_{ac}\gamma^{2}_{cb} \psi_{b} \\
+	&= \psi^{\dagger}_{d} \gamma^{0}_{de}\gamma^{0}_{ef} \gamma^{2}_{fb} (\gamma^{\mu})^{\top}_{ba} \gamma^{0}_{ac}\gamma^{2}_{cb} \psi_{b} \\
+	&= \bar\psi_{e} \gamma^{0}_{ef} \gamma^{2}_{fb} (\gamma^{\mu})^{\top}_{ba} \gamma^{0}_{ac}\gamma^{2}_{cb} \psi_{b} \\
+	&= \bar\psi \gamma^{0}\gamma^{2} (\gamma^{\mu})^{\top} \gamma^{0}\gamma^{2} \psi\\
+	\tag{3.1.1}
+\end{align*}
+When $\mu=0, 2$, $(\gamma^{\mu})^{\top} = \gamma^{\mu}$
+\begin{equation}
+\bar\psi \gamma^{0}\gamma^{2} (\gamma^{\mu})^{\top} \gamma^{0}\gamma^{2} = \bar\psi (-1)\gamma^{\mu} \psi = -\bar\psi \gamma^{\mu} \psi
+	\tag{3.1.2}
+\end{equation}
+and if $\mu=1, 3$, $(\gamma^{\mu})^{\top} = -\gamma^{\mu}$
+\begin{equation}
+\bar\psi \gamma^{0}\gamma^{2} (\gamma^{\mu})^{\top} \gamma^{0}\gamma^{2} = \bar\psi (-\gamma^{\mu}) \psi = -\bar\psi \gamma^{\mu} \psi
+	\tag{3.1.3}
+\end{equation}
+So we can say $\displaystyle C\bar\psi\gamma^{\mu}\psi C = -\bar\psi \gamma^{\mu} \psi$ . \\
+Q.E.D.\\
+~\\
+~\\
+(2) 
+\begin{equation}
+\begin{aligned}
+	C\bar\psi\gamma^{\mu}\psi C &= (-i\gamma^{0}\gamma^{2}\psi)^{\top}\gamma^{\mu}\gamma^{5}(-i\bar\psi\gamma^{0}\gamma^{2})^{\top}\\
+	&= -\psi_{f} (\gamma^{2})^{\top}_{fe}(\gamma^{0})^{\top}_{ea} \gamma^{\mu}_{ab}\gamma^{5}_{bc} (\gamma^{2})^{\top}_{cd} \psi^{\dagger}_{d} \\
+	&= -\psi^{\dagger}_{d} \gamma^{2}_{dc} (\gamma^{5})^{\top}_{cb}(\gamma^{\mu})^{\top}_{ba} \gamma^{0}_{ae}\gamma^{2}_{ef} \psi_{f} \\
+	&= -\bar\psi_{d}  \gamma^{0}_{de}\gamma^{2}_{ec} \gamma^{5}_{cb}(\gamma^{\mu})^{\top}_{ba} \gamma^{0}_{ae}\gamma^{2}_{ef} \psi_{f} \\
+	&= -\bar\psi \gamma^{0}\gamma^{2} \gamma^{5}(\gamma^{\mu})^{\top} \gamma^{0}\gamma^{2} \psi
+\end{aligned}
+	\tag{3.2.1}
+\end{equation}
+When $\mu=0, 2$, $(\gamma^{\mu})^{\top} = \gamma^{\mu}$
+\begin{equation}
+-\bar\psi \gamma^{0}\gamma^{2} \gamma^{5}(\gamma^{\mu})^{\top} \gamma^{0}\gamma^{2} \psi = -\bar\psi \gamma^{5}\gamma^{\mu} \psi = \bar\psi \gamma^{\mu}\gamma^{5} \psi
+	\tag{3.2.2}
+\end{equation}
+and if $\mu=1, 3$, $(\gamma^{\mu})^{\top} = -\gamma^{\mu}$
+\begin{equation}
+-\bar\psi \gamma^{0}\gamma^{2} \gamma^{5}(\gamma^{\mu})^{\top} \gamma^{0}\gamma^{2} \psi = -\bar\psi (-\gamma^{\mu})\gamma^{5} \psi = \bar\psi \gamma^{\mu}\gamma^{5} \psi
+	\tag{3.2.3}
+\end{equation}
+So we can say $\displaystyle C\bar\psi\gamma^{\mu}\gamma^{5}\psi C = \bar\psi \gamma^{\mu}\gamma^{5} \psi$ . \\
+Q.E.D.\\
+~\\
+~\\
+(3) For $\displaystyle \sigma^{\mu\nu}=\frac{i}{2} [\ \gamma^{\mu}, \gamma^{\nu} ]\ = \frac{i}{2}(\gamma^{\mu}\gamma^{\nu}-\gamma^{\nu}\gamma^{\mu})$ ,\\
+we have \\
+\begin{equation}
+\begin{aligned}
+C \bar\psi\gamma^{\mu}\gamma^{\nu}\psi C &= (-i\gamma^{0}\gamma^{2}\psi)^{\top}\gamma^{\mu}\gamma^{\nu}(-i\bar\psi\gamma^{0}\gamma^{2})^{\top} \\
+&= -\psi_{f} (\gamma^{2})^{\top}_{fe}(\gamma^{0})^{\top}_{ea} \gamma^{\mu}_{ab}\gamma^{\nu}_{bc} (\gamma^{2})^{\top}_{cd} \psi^{\dagger}_{d} \\
+&= -\psi^{\dagger}_{d} \gamma^{2}_{dc} (\gamma^{\nu})^{\top}_{cb}(\gamma^{\mu})^{\top}_{ba} \gamma^{0}_{ae}\gamma^{2}_{ef} \psi_{f} \\
+&= -\bar\psi \gamma^{0}\gamma^{2} (\gamma^{\nu})^{\top}(\gamma^{\mu})^{\top} \gamma^{0}\gamma^{2} \psi\\
+\end{aligned}
+	\tag{3.3.1}
+\end{equation}
+$\bullet$ When $\mu, \nu = 0, 2$ , or $\mu, \nu = 1, 3$ . We have
+\begin{equation}
+-\bar\psi \gamma^{0}\gamma^{2} (\gamma^{\nu})^{\top}(\gamma^{\mu})^{\top} \gamma^{0}\gamma^{2} \psi = \bar\psi \gamma^{\nu}\gamma^{\mu} \psi = -\bar\psi \gamma^{\mu}\gamma^{\nu} \psi
+	\tag{3.3.2}
+\end{equation}
+$\bullet$ Or $\mu,\nu = 0,2$ , or $\mu,\nu = 1,3$ . We have
+\begin{equation}
+-\bar\psi \gamma^{0}\gamma^{2} (\gamma^{\nu})^{\top}(\gamma^{\mu})^{\top} \gamma^{0}\gamma^{2} \psi = \bar\psi (-\gamma^{\nu})(-\gamma^{\mu}) \psi = -\bar\psi \gamma^{\mu}\gamma^{\nu} \psi
+	\tag{3.3.3}
+\end{equation}
+From Equ.3.3.2 and Equ.3.3.3, we can get $C \bar\psi\gamma^{\mu}\gamma^{\nu}\psi C = -\bar\psi \gamma^{\mu}\gamma^{\nu} \psi$ . \\
+And as the same goes, we have $C \bar\psi\gamma^{\nu}\gamma^{\mu}\psi C = -\bar\psi \gamma^{\nu}\gamma^{\mu} \psi$ . \\
+Then we obtain
+\begin{equation}
+\begin{aligned}
+C\bar\psi\sigma^{\mu\nu}\psi C &= \frac{i}{2}C\bar\psi[\gamma^{\mu},\gamma^{\nu}]\psi C\\
+&= \frac{i}{2}C\bar\psi(\gamma^{\mu}\gamma^{\nu}-\gamma^{\nu}\gamma^{\mu})\psi C\\
+&= \frac{i}{2}\bar\psi(\gamma^{\mu}\gamma^{\nu}-\gamma^{\nu}\gamma^{\mu})\psi \\
+&= \bar\psi\sigma^{\nu\mu}\psi =-\bar\psi\sigma^{\mu\nu}\psi \\
+\end{aligned}
+	\tag{3.3.3}
+\end{equation}
+So we can say $\displaystyle C\bar\psi\sigma^{\mu\nu}\psi C = -\bar\psi\sigma^{\mu\nu}\psi$ .\\
+Q.E.D.\\
+~\\
+~\\
+~\\
+
+% 第四题
+\textbf{4. Prove the commutation relation of creation-annihilation operators of photon field.} \\		% \top是转置符号
+~\\
+\textbf{Proof\,:} With the expressions of vector field operator in Equ.4.1.1 and conjugate momentum in Equ.4.1.2 below
+\begin{equation}
+\bm{A}(x) = \int \frac{\dif^{3}k}{(2\pi)^{3}} \frac{1}{\sqrt{2E_{\bm k}}} \sum\limits_{\lambda=1,2} \bm\epsilon^{(\lambda)}(\bm k) \left( a_{\lambda}(\bm k)e^{ik \cdot x}+a_{\lambda}^{\dagger}(\bm k)e^{-ik \cdot x} \right) 
+% 利用\left( ... \right)使括号显示更美观，类似有\left\{ ... \right\}
+% 对于长公式换行，如果涉及到从长公式括号中的某一处截断，请参考https://blog.csdn.net/i10630226/article/details/44700361的方法
+	\tag{4.1.1}
+\end{equation}
+
+\begin{equation}
+\bm{\pi}(x) = i \int \frac{\dif^{3}k}{(2\pi)^{3}} \sqrt{\frac{E_{\bm k}}{2}} \sum\limits_{\lambda=1,2} \bm\epsilon^{(\lambda)}(\bm k) \left(a_{\lambda}(\bm k)e^{ik \cdot x}-a_{\lambda}^{\dagger}(\bm k)e^{-ik \cdot x}\right) 	% 利用\left( ... \right)使括号显示更美观
+	\tag{4.1.2}
+\end{equation}
+which polarization vector $\bm\epsilon$ satisfies $\bm k \cdot \bm\epsilon^{(\lambda)}(\bm k)=0$ , and three space-like polarization vectors $\bm\epsilon^{(\lambda)}(\bm k)$ are orthogonal to $\bm k$
+\begin{equation}
+\bm\epsilon^{(\lambda)}(\bm k) \cdot \bm\epsilon^{(\lambda')}(\bm k) = -\delta_{\lambda\lambda'} \qquad \sum\limits_{\lambda=1}^{3} \epsilon^{(\lambda)}_{\rho}(k)\epsilon^{(\lambda)}_{\nu}(k) = -\left( g_{\rho\nu}-\frac{k_{\rho}k_{\nu}}{\mu^{2}} \right)
+	\tag{4.1.3}
+\end{equation}
+Now we can work out the expression of annihilation operator
+\begin{equation}
+a_{\lambda=1,2}(\bm k) = \int \dif^{3}x e^{-i\bm k \cdot \bm x}
+	\tag{4.1.4}
+\end{equation}
+And creation operator $a_{\lambda}^{\dagger}(\bm k)$ is
+\begin{equation}
+a_{\lambda=1,2}^{\dagger}(\bm k) = \int \dif^{3}x e^{i\bm k \cdot \bm x}
+	\tag{4.1.5}
+\end{equation}
+Then we have
+\begin{equation}
+\begin{aligned}
+\left[a_{\lambda}(\bm k), a_{\lambda'}^{\dagger}(\bm k')\right] &= -\int \dif^{3}x\dif^{3}x'e^{-ik \cdot x}e^{ik' \cdot x'} \\		% 利用\left[ ... \right]使括号显示更美观
+&= \\
+&= \delta_{\lambda\lambda'}\delta^{(3)}(\bm k - \bm k')
+\end{aligned}
+	\tag{4.1.6}
+\end{equation}
+So we verify that creation-annihilation operators of vector field have commutation relation which is $\left[a_{\lambda}(\bm k), a_{\lambda'}^{\dagger}(\bm k')\right] = \delta_{\lambda\lambda'}\delta^{(3)}(\bm k - \bm k')$
+
+
+
+
+
+\end{spacing} 		% 结束行距 
+
+\end{document}  
