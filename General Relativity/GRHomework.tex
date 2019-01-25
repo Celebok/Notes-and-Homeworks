@@ -1,0 +1,434 @@
+% XeLaTeX can use any Mac OS X font. See the setromanfont command below.
+% Input to XeLaTeX is full Unicode, so Unicode characters can be typed directly into the source.
+
+% The next lines tell TeXShop to typeset with xelatex, and to open and save the source with Unicode encoding.
+
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[12pt]{article}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsmath}           % 数学符号与特殊字符
+\usepackage{ragged2e}          % 两端对齐
+\usepackage{color}             	% 字体颜色
+\usepackage{indentfirst}		% 首行缩进
+\geometry{left=1.5cm,right=2.5cm,top=2.0cm,bottom=2.5cm}
+% Will Robertson's fontspec.sty can be used to simplify font choices.
+% To experiment, open /Applications/Font Book to examine the fonts provided on Mac OS X,
+% and change "Hoefler Text" to any of these choices.
+
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont[Mapping=tex-text]{Hoefler Text}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+\title{\textbf{General Relativity Homework}}
+\author{\emph{Tianxiao Liang} \quad 2018322003}
+%\date{}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+\setlength{\parindent}{0pt}	% 取消首行缩进，如果需要缩进，则将0pt设置为所需数量的pt，一般为2pt
+% For many users, the previous commands will be enough.
+% If you want to directly input Unicode, add an Input Menu or Keyboard to the menu bar 
+% using the International Panel in System Preferences.
+% Unicode must be typeset using a font containing the appropriate characters.
+% Remove the comment signs below for examples.
+
+% \newfontfamily{\A}{Geeza Pro}
+% \newfontfamily{\H}[Scale=0.9]{Lucida Grande}
+% \newfontfamily{\J}[Scale=0.85]{Osaka}
+\newcommand*{\dif}{\mathop{}\!\mathrm{d}} 		% \mathop{}用来输出直立黑体的微分算子，如\mathop{d}，为了简略我们使用\dif代替\mathop{d}
+
+% 第一题
+\textbf{1. Prove the torsion $\displaystyle\Gamma^{\lambda}_{[\mu\nu]}$ (the anti-symmetric part of an affine connection) is a tensor.} \\		% \top是转置符号
+~\\
+\textbf{Proof\,:} 	% \widetilde用来在字母上加~
+\begin{equation}
+\begin{aligned}
+ \displaystyle \widetilde\Gamma^{\lambda}_{[\mu\nu]} &= \frac{1}{2}(\widetilde\Gamma^{\lambda}_{\mu\nu}-\widetilde\Gamma^{\lambda}_{\nu\mu}) \\
+&= \frac{1}{2}(\Gamma^{\rho}_{\alpha\sigma}-\Gamma^{\rho}_{\sigma\alpha}) \frac{\partial x^{\alpha}}{\partial\widetilde x^{\mu}} \frac{\partial x^{\sigma}}{\partial \widetilde x^{\nu}} \frac{\partial\widetilde x^{\lambda}}{\partial x^{\rho}}+\frac{1}{2}(\frac{\partial^{2}x^{\rho}}{\partial\widetilde x^{\mu}\partial\widetilde x^{\nu}}\frac{\partial\widetilde x^{\lambda}}{\partial x^{\rho}} - \frac{\partial^{2}x^{\rho}}{\partial\widetilde x^{\nu}\partial\widetilde x^{\mu}}\frac{\partial\widetilde x^{\lambda}}{\partial x^{\rho}})\\
+&= \Gamma^{\rho}_{[\alpha\sigma]}\frac{\partial x^{\alpha}}{\partial\widetilde x^{\mu}} \frac{\partial x^{\sigma}}{\partial \widetilde x^{\nu}} \frac{\partial\widetilde x^{\lambda}}{\partial x^{\rho}}\\
+\end{aligned}
+	\tag{1.1}
+\end{equation}
+From Equ.1.1 we can prove that the torsion $\displaystyle\Gamma^{\lambda}_{[\mu\nu]}$ is a tensor.\\
+~\\
+Q.E.D.
+~\\
+~\\
+~\\
+% 第二题
+\textbf{2. We know that $\Phi$ is a scalar. Please verify that $\displaystyle A_{\mu}=\frac{\partial\Phi}{\partial x^{\mu}}$ is a covariant vector.} \\		
+~\\
+\textbf{Proof\,:} \begin{equation} 		% \widetilde用来在字母上加~
+\displaystyle \widetilde{A}_{\mu}=\frac{\partial\Phi}{\partial\widetilde{x}^{\mu}}, A_{\nu}=\frac{\partial\Phi}{\partial x^{\nu}}
+	\tag{2.1}
+\end{equation}
+then we have
+\begin{equation}
+\displaystyle \widetilde{A}_{\mu}=\frac{\partial\Phi}{\partial x^{\nu}}\frac{\partial x^{\nu}}{\partial\widetilde{x}^{\mu}}=A_{\nu}\frac{\partial x^{\nu}}{\partial\widetilde{x}^{\mu}}
+	\tag{2.2}
+\end{equation}
+So $\displaystyle A_{\mu}=\frac{\partial\Phi}{\partial x^{\mu}}$ is a covariant vector.\\
+~\\
+Q.E.D.
+~\\
+~\\
+~\\
+% 第三题
+\textbf{3. Prove $T^{\mu\nu}A_{\mu\nu}=0$ when $T^{\mu\nu}$ is a symmetric tensor and $A_{\mu\nu}$ is an antisymmetric tensor.} \\		
+~\\
+\textbf{Proof\,:} 
+\begin{equation}
+\displaystyle T^{\mu\nu}A_{\mu\nu}=T^{\nu\mu}A_{\nu\mu}=T^{\mu\nu}(-A_{\mu\nu})=-T^{\mu\nu}A_{\mu\nu}
+	\tag{3.1}
+\end{equation}
+then we can get 
+\begin{equation}
+\displaystyle T^{\mu\nu}A_{\mu\nu}=-T^{\mu\nu}A_{\mu\nu}
+	\tag{3.2}
+\end{equation}
+So we can say $T^{\mu\nu}A_{\mu\nu}=0$.\\
+~\\
+Q.E.D.
+~\\
+~\\
+~\\
+% 第四题
+\textbf{4. Known that $g$ is the metric of $g_{\mu\nu}$. Try to verify that $\displaystyle \Gamma^{\mu}_{\alpha\mu}=\frac{1}{2}g^{\mu\nu}g_{\mu\nu,a}=\frac{\partial}{\partial x^{\alpha}}(\ln\sqrt{-g})$.} \\			% log和ln用\log和\ln表示	
+~\\
+\textbf{Proof\,:}
+\begin{equation}
+\begin{aligned}
+\displaystyle 
+\Gamma^{\mu}_{\alpha\beta} &= \frac{1}{2}g^{\mu\nu}(g_{\alpha\nu,\mu}+g_{\nu\mu,\alpha}-g_{\alpha\mu,\nu})\\
+&=\frac{1}{2}g^{\mu\nu}g_{\mu\nu,\alpha}
+\end{aligned}
+	\tag{4.1}
+\end{equation}
+when
+\begin{equation}
+\displaystyle 
+\frac{\partial}{\partial x^{\alpha}}(\ln\sqrt{-g})=-\frac{1}{\sqrt{-g}} \cdot \frac{1}{2}(-g)^{-1/2}\frac{\partial g}{\partial x^{\alpha}}=\frac{1}{2g}\frac{\partial g}{\partial x^{\alpha}}
+	\tag{4.2}
+\end{equation}
+And because of the equation $\dif g=g \cdot g^{\mu\nu}\dif g^{\mu\nu}$, we can get $\displaystyle \frac{\partial g}{\partial x^{\alpha}}=g \cdot g^{\mu\nu}\frac{\partial g_{\mu\nu}}{\partial x^{\alpha}}$.\\
+So we have $\displaystyle \Gamma^{\mu}_{\alpha\mu}=\frac{1}{2}g^{\mu\nu}g_{\mu\nu,a}=\frac{\partial}{\partial x^{\alpha}}(\ln\sqrt{-g})$.\\
+~\\
+Q.E.D.
+~\\
+~\\
+~\\
+% 第五题
+\textbf{5. Known that $\displaystyle A_{\mu;\nu}=A_{\mu,\nu}-\Gamma^{\lambda}_{\mu\nu}A_{\lambda}$. Use coordinate differential relation $\displaystyle U_{;\mu}=U_{,\mu}$ and Leibnitzs law to prove $B^{\mu}_{;\nu}=B^{\mu}_{,\nu}+\Gamma^{\mu}_{\lambda\nu}B^{\lambda}$.} \\		
+~\\
+\textbf{Proof\,:}
+From Leibnitzs law, we have
+\begin{equation}
+\displaystyle 
+(A_{\mu}B^{\mu})_{;\nu}=A_{\mu;\nu}B^{\mu}+A_{\mu}B^{\mu}_{;\nu}, (A_{\mu}B^{\mu})_{,\nu}=A_{\mu,\nu}B^{\mu}+A_{\mu}B^{\mu}_{,\nu}
+	\tag{5.1}
+\end{equation}
+while $\displaystyle U_{;\mu}=U_{,\mu}$ , we have
+\begin{equation}
+\displaystyle 
+A_{\mu;\nu}B^{\mu}+A_{\mu}B^{\mu}_{;\nu}=A_{\mu,\nu}B^{\mu}+A_{\mu}B^{\mu}_{,\nu}
+	\tag{5.2}
+\end{equation}
+Then substitute $\displaystyle A_{\mu;\nu}=A_{\mu,\nu}-\Gamma^{\lambda}_{\mu\nu}A_{\lambda}$ into Equ.5.2, we'll have
+\begin{equation}
+\displaystyle 
+(A_{\mu;\nu}-\Gamma^{\lambda}_{\mu\nu}A_{\lambda})B^{\mu}+A_{\mu}B^{\mu}_{;\nu}=A_{\mu,\nu}B^{\mu}+A_{\mu}B^{\mu}_{,\nu}
+	\tag{5.3}
+\end{equation}
+The formula can be obtained as
+\begin{equation}
+\displaystyle 
+A_{\mu}B^{\mu}_{;\nu}=A_{\mu}B^{\mu}+A_{\mu}\Gamma^{\mu}_{\sigma\nu}B^{\sigma}
+	\tag{5.4}
+\end{equation}
+it equals to $B^{\mu}_{;\nu}=B^{\mu}_{,\nu}+\Gamma^{\mu}_{\lambda\nu}B^{\lambda}$.\\
+~\\
+Q.E.D.
+~\\
+~\\
+~\\
+% 第六题
+\textbf{6. Known that $\displaystyle \dif s^{2}=g_{\mu\nu}\dif x^{\mu}\dif x^{\nu}=-\dif\tau^{2}$. Derive the geodesic equation from variational principle $\displaystyle \delta\int_{A}^{B}\dif s=0$ or $\displaystyle \delta\int_{A}^{B}(\frac{\dif\tau}{\dif\lambda})^{2}\dif\lambda=0$.} \\	
+~\\
+\textbf{Answer\,:} We can get $\dif s=(g_{\alpha\beta}\dif x^{\alpha}\dif x^{\beta})^{1/2}$, and introduce scalar parameter $\lambda$.\\
+Then we have
+\begin{equation}
+\displaystyle \dif s=(g_{\alpha\beta}\dot x^{\alpha}\dot x^{\beta})^{1/2}\dif\lambda
+	\tag{6.1}
+\end{equation}
+and $\displaystyle \dot x^{\alpha}=\frac{\dif x^{\alpha}}{\dif\lambda}$, $\displaystyle \dot x^{\beta}=\frac{\dif x^{\beta}}{\dif\lambda}$.\\
+So we have
+\begin{equation}
+\displaystyle 
+\delta\int_{A}^{B}L\dif \lambda=0
+	\tag{6.2}
+\end{equation}
+and $L=(g_{\alpha\beta}\dot x^{\alpha}\dot x^{\beta})^{1/2}$ is the Lagrangian.
+From Lagrange equation $\displaystyle \frac{\partial L}{\partial x^{\nu}}-\frac{\dif}{\dif\lambda}\frac{\partial L}{\partial\dot x^{\nu}}=0$, we have :
+\begin{equation}
+\displaystyle 
+\frac{1}{(g_{\alpha\beta}\dot x^{\alpha}\dot x^{\beta})^{1/2}}\frac{\partial g_{\alpha\beta}}{\partial x^{\nu}}\dot x^{\alpha}\dot x^{\beta}-\frac{\dif}{\dif\lambda}\frac{g_{\alpha\nu}\dot x^{\alpha}+g_{\beta\nu}\dot x^{\beta}}{(g_{\alpha\beta}\dot x^{\alpha}\dot x^{\beta})^{1/2}}=0
+	\tag{6.3}
+\end{equation}
+when we select	 $\lambda$ as $s$, we have
+\begin{equation}
+\displaystyle 
+(g_{\alpha\beta}\dot x^{\alpha}\dot x^{\beta})^{1/2}=g_{\alpha\beta}\frac{\dif x^{\alpha}}{\dif\lambda}\frac{\dif x^{\beta}}{\dif\lambda}=g_{\alpha\beta}\frac{\dif x^{\alpha}}{\dif s}\frac{\dif x^{\beta}}{\dif s}=1
+	\tag{6.4}
+\end{equation}
+Now we can rewrite the Lagrange equation as
+\begin{equation}
+\begin{aligned}
+\displaystyle 
+g_{\alpha\nu,\beta}\dot x^{\alpha}\dot x^{\beta}-\frac{\dif}{\dif s}(g_{\alpha\nu}\dot x^{\alpha})=0\\
+g_{\alpha\nu}\frac{\dif^{2}x^{\alpha}}{\dif s^{2}}+(g_{\alpha\nu,\beta}-\frac{1}{2}g_{\alpha\beta,\nu})\frac{\dif x^{\alpha}}{\dif s}\frac{\dif x^{\beta}}{\dif s}=0
+\end{aligned}
+	\tag{6.5}
+\end{equation}
+and
+\begin{equation}
+\displaystyle 
+g_{\alpha\nu,\beta}\frac{\dif x^{\alpha}}{\dif s}\frac{\dif x^{\beta}}{\dif s}=g_{\beta\nu,\alpha}\frac{\dif x^{\alpha}}{\dif s}\frac{\dif x^{\beta}}{\dif s}=g_{\alpha\beta,\nu}\frac{\dif x^{\beta}}{\dif s}\frac{\dif x^{\alpha}}{\dif s}
+	\tag{6.6}
+\end{equation}
+so
+\begin{equation}
+\displaystyle 
+\frac{\dif^{2}x^{\mu}}{\dif s^{2}}+\frac{1}{2}g^{\mu\nu}(g_{\alpha\nu,\beta}+g_{\beta\nu,\alpha}-g_{\alpha\beta,\nu})\frac{\dif x^{\alpha}}{\dif s}\frac{\dif x^{\beta}}{\dif s}=0
+	\tag{6.7}
+\end{equation}
+Finally we can get
+\begin{equation}
+\displaystyle 
+\frac{\dif^{2}x^{\mu}}{\dif s^{2}}+\Gamma^{\mu}_{\alpha\beta}\frac{\dif x^{\alpha}}{\dif s}\frac{\dif x^{\beta}}{\dif s}=0
+	\tag{6.8}
+\end{equation}
+~\\
+~\\
+~\\
+% 第七题
+\textbf{7. If an ordinary spherical space is embedded in three - dimensional Euclidean space and spherical polar coordinate system is selected, it has line elements with the form $\dif s^{2}=a^{2}\dif\theta^{2}+a^{2}\sin^{2}\theta\dif\phi^{2}$ :} \\	
+~\\
+\textbf{(1) derive $g^{\mu\nu}$;}\\
+\textbf{(2) derive all Christoffel connection $\Gamma^{\mu}_{\alpha\beta}$;}\\
+\textbf{(3) derive all $R^{\alpha}_{\mu\nu\lambda}$;}\\
+\textbf{(4) derive all $R_{\mu\nu}$;}\\
+\textbf{(5) derive $R$;}\\
+\textbf{(6) derive the geodesic equation of spherical space represented by the metric.}\\
+~\\
+\textbf{Answer\,:}\\
+(1) From the definition we can get $\displaystyle g^{11}=\frac{1}{a^{2}}$, $\displaystyle g^{22}=\frac{1}{a^{2}\sin^{2}\theta}$, and $g^{12}=g^{21}=0$ . \\
+~\\
+(2) From (1), we can get
+\begin{equation}
+\displaystyle 
+\Gamma^{1}_{11} = \frac{1}{2}g^{1\mu}(g_{\mu1,1}+g_{1\mu,1}-g_{11,\mu})=\frac{1}{2}g^{11}g_{11,1}=0\\
+	\tag{7.1}
+\end{equation}
+
+\begin{equation}
+\displaystyle 
+\Gamma^{1}_{12} = \Gamma^{1}_{21} = \frac{1}{2}g^{11}(g_{11,2}+g_{21,1}-g_{12,1})=\frac{1}{2}g^{11}g_{11,2}=0\\
+	\tag{7.2}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+\displaystyle 
+\Gamma^{1}_{22} &= \frac{1}{2}g^{11}(g_{12,2}+g_{21,2}-g_{22,1})\\
+&=\frac{1}{2}g^{11}(-g_{22,1})=\frac{1}{2}\frac{1}{a^{2}}(-2a^{2}\sin\theta\cos\theta)=-\sin\theta\cos\theta
+\end{aligned}
+	\tag{7.2}
+\end{equation}
+
+\begin{equation}
+\displaystyle 
+\Gamma^{2}_{11} = \frac{1}{2}g^{22}(g_{21,1}+g_{12,1}-g_{11,2})=0 
+	\tag{7.3}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+\displaystyle 
+\Gamma^{2}_{12} &= \Gamma^{2}_{21} = \frac{1}{2}g^{22}(g_{22,1}+g_{12,2}-g_{21,2})\\
+&=\frac{1}{2}g^{22}g_{22,1}=\frac{1}{2}\frac{1}{a^{2}\sin^{2}\theta}(2a^{2}\sin\theta\cos\theta)=\cot\theta
+\end{aligned}
+	\tag{7.4}
+\end{equation}
+
+\begin{equation}
+\displaystyle 
+\Gamma^{2}_{22} = \frac{1}{2}g^{22}g_{22,2}=0 
+	\tag{7.5}
+\end{equation}
+So we can finally get $\Gamma^{1}_{11}=\Gamma^{1}_{12}=\Gamma^{1}_{21}=\Gamma^{2}_{11}=\Gamma^{2}_{22}=0$, $\Gamma^{1}_{22}=-\sin\theta\cos\theta$, and $\Gamma^{2}_{12}=\cot\theta$.\\
+~\\
+(3) From (2), we can get
+\begin{equation}
+\begin{aligned}
+\displaystyle 
+R^{1}_{212} &= \Gamma^{1}_{22,1}- \Gamma^{1}_{21,2}+\Gamma^{1}_{\sigma1}\Gamma^{\sigma}_{22}-\Gamma^{1}_{\sigma2}\Gamma^{\sigma}_{21}\\
+&= \Gamma^{1}_{22,1}-\Gamma^{1}_{22}\Gamma^{2}_{21}=\sin^{2}\theta
+\end{aligned}
+	\tag{7.6}
+\end{equation}
+and
+\begin{equation}
+\displaystyle 
+R^{2}_{121} = g^{22}R_{2121} = g^{22}R_{1212}
+	\tag{7.7}
+\end{equation}
+for $R^{2}_{212}=g^{11}R^{1}_{1212}$ , then we can get $\displaystyle R_{2121} = \frac{R^{1}_{212}}{g^{11}} = \frac{\sin^{2}\theta}{\frac{1}{a^{2}}}=a^{2}\sin^{2}\theta$.\\
+So we have $\displaystyle R^{2}_{121} = \frac{1}{a^{2}\sin^{2}\theta} \cdot a^{2}\sin^{2}\theta=1$. We can finally get $R^{1}_{212} = \sin^{2}\theta, R^{2}_{121} = 1$.\\
+~\\
+(4) Because $R_{\mu\nu}=R^{\lambda}_{\mu\nu\lambda}=R^{1}_{\mu\nu1}+R^{2}_{\mu\nu2}$, we can get Equ.7.8 below :\\
+\begin{equation}
+\begin{aligned}
+\displaystyle 
+R_{11} &= R^{\lambda}_{11\lambda} = R^{1}_{111}+R^{2}_{112} = -1\\
+R_{12} &= R^{\lambda}_{12\lambda} = R^{1}_{121}+R^{2}_{122} = 0\\
+R_{22} &= R^{\lambda}_{22\lambda} = R^{1}_{221}+R^{2}_{222} = -\sin^{2}\theta\\
+\end{aligned}
+	\tag{7.8}
+\end{equation}
+~\\
+(5) $\displaystyle R=g^{\mu\nu}R_{\mu\nu}=g^{11}R_{11}+g^{22}R_{22}=-\frac{1}{a^{2}}-\frac{1}{a^{2}}=-\frac{2}{a^{2}}$.\\
+~\\
+(6) The geodesic equation in triangular rectangular coordinates system is $\displaystyle \frac{\dif^{2}x^{\mu}}{\dif\tau^{2}}+\Gamma^{\mu}_{\alpha\beta}\frac{\dif x^{\alpha}}{\dif\tau}\frac{\dif x^{\beta}}{\dif\tau}=0$.\\
+Then we can transform it into spherical polar coordinate system :
+\begin{equation}
+\displaystyle 
+\frac{\dif^{2}\theta}{\dif\tau^{2}}+(-\sin\theta\cos\theta)\frac{\dif\phi}{\dif\tau}\frac{\dif\phi}{\dif\tau}=0
+	\tag{7.9}
+\end{equation}
+and we will finally get
+\begin{equation}
+\displaystyle 
+\frac{\dif^{2}\phi}{\dif\tau^{2}}+2\cot\theta\frac{\dif\theta}{\dif\tau}\frac{\dif\phi}{\dif\tau}=0
+	\tag{7.10}
+\end{equation}
+Equ.7.10 is the geodesic equation we want.
+~\\
+~\\
+~\\
+% 第八题
+\textbf{8. Prove Einstein field equation $\displaystyle R_{\mu\nu}-\frac{1}{2}g_{\mu\nu}R=\kappa T_{\mu\nu}$ can be rewritten as $\displaystyle R_{\mu\nu}=\kappa(T_{\mu\nu}-\frac{1}{2}g_{\mu\nu}T)$.} \\		
+~\\
+\textbf{Proof\,:} Transform $\displaystyle R_{\mu\nu}-\frac{1}{2}g_{\mu\nu}R=\kappa T_{\mu\nu}$ into 
+\begin{equation}
+\displaystyle
+g^{\mu\nu}R_{\mu\nu}-\frac{1}{2}g^{\mu\nu}g_{\mu\nu}R=\kappa g^{\mu\nu}T_{\mu\nu}
+	\tag{8.1}
+\end{equation}
+then we'll get
+\begin{equation}
+\displaystyle
+R-\frac{1}{2} \cdot 4R=\kappa T \quad \Rightarrow  \quad R=-\kappa T	% \Longrightarrow和\Longrightarrow为长箭头，\Rightarrow和\rightarrow为短箭头
+	\tag{8.2}
+\end{equation}
+So we have
+\begin{equation}
+\begin{aligned}
+\displaystyle
+R_{\mu\nu}-\frac{1}{2}g_{\mu\nu}R=R_{\mu\nu}-\frac{1}{2}g_{\mu\nu}\kappa T=\kappa T_{\mu\nu}\\
+\Rightarrow R_{\mu\nu}=-\kappa(\frac{1}{2}g_{\mu\nu}T-T_{\mu\nu})=\kappa(T_{\mu\nu}-\frac{1}{2}g_{\mu\nu}T)
+\end{aligned}
+	\tag{8.3}
+\end{equation}
+~\\
+Q.E.D.
+~\\
+~\\
+~\\
+% 第九题
+\textbf{9. Under the linear approximation of a weak gravitational field, the metric can be written as $g_{\mu\nu}=\eta_{\mu\nu}+h_{\mu\nu}$. Find the form of a linearized Einstein field equation.} \\	
+~\\
+\textbf{Answer\,:} Under weak gravitational field we can represent metric as $g_{\mu\nu}=h_{\mu\nu}+\eta_{\mu\nu}$ , and we make $|h_{\mu\nu}|\ll1$ . In linear approximation theory, we just keep the linear terms for $h_{\mu\nu}$ , so we have 	% \ll表示远小于，对应有表示\gg远大于
+\begin{equation}
+\begin{aligned}
+\Gamma^{\mu}_{\alpha\beta} &= \frac{1}{2}\eta_{\mu\nu}(h_{\alpha\nu,\beta}+h_{\beta\nu,\alpha}-h_{\alpha\beta,\nu}) \\
+&=\frac{1}{2}(h_{\alpha,\beta}^{\mu}+h_{\beta,\alpha}^{\mu}-h_{\alpha\beta}^{,\mu})
+\end{aligned}
+		\tag{9.1}
+\end{equation}
+And we have linearized Ricci tensor 
+\begin{equation}
+\begin{aligned}
+R_{\mu\nu} &= \Gamma^{\lambda}_{\mu\lambda,\,\nu}-\Gamma^{\lambda}_{\mu\nu,\,\lambda} \\
+&\equiv \frac{1}{2}(h^{,\alpha}_{\mu\nu}+h_{,\mu\,,\nu}-h^{\alpha}_{\mu,\nu,\alpha}-h^{\alpha}_{\nu,\mu,\alpha})
+\end{aligned}
+		\tag{9.2}
+\end{equation}
+for $h\equiv h^{\alpha}_{\alpha}=\eta_{\alpha\beta}h_{\alpha\beta}$ .\\
+~\\
+We define 
+\begin{equation}
+\bar h_{\mu\nu}\equiv h_{\mu\nu}-\frac{1}{2}\eta_{\mu\nu}h
+		\tag{9.3}
+\end{equation}
+and its inverse transformation is 
+\begin{equation}
+ {\bar{\bar h}}_{\mu\nu} \equiv \bar h_{\mu\nu}-\frac{1}{2}\eta_{\mu\nu}\bar h=h_{\mu\nu}
+		\tag{9.4}
+\end{equation}
+which can be easily proved. \\
+With the help of Equ.9.3 and Equ.9.4, we'll get linearized field equation
+\begin{equation}
+\bar{R}_{\mu\nu} \equiv R_{\mu\nu}-\frac{1}{2}\eta_{\mu\nu}R=-8\pi GT_{\mu\nu}
+		\tag{9.5(a)}
+\end{equation}
+The specific form is
+\begin{equation}
+\bar h^{,\alpha}_{\mu\nu,\alpha}+\eta_{\mu\nu} \bar{h}^{,\alpha,\beta}_{\alpha\beta}-\bar h^{,\alpha}_{\mu\alpha,\nu}-\bar h^{,\alpha}_{\nu\alpha,\mu}=-16\pi GT_{\mu\nu}
+		\tag{9.5(b)}
+\end{equation}
+Consider the harmonic condition, then we have
+\begin{equation}
+\bar h^{,\alpha}_{\mu\alpha}=0
+		\tag{9.6}
+\end{equation}
+So we can finally get the simplified field equation
+\begin{equation}
+\bar h^{,\alpha}_{\mu\nu,\alpha}=-16\pi GT_{\mu\nu}
+		\tag{9.7}
+\end{equation}
+Equ.9.7 is the answer we want to get.
+~\\
+~\\
+~\\
+% 第十题
+\textbf{10. Suppose $\dif s^{2}=-(x^{0})^{4}(\dif x^{0})^{2}+2e^{x^{1}}(\dif x^{1})^{2}+e^{-x^{2}}(\dif x^{2})^{2}+(\dif x^{3})^{2}$, and prove the space-time is flat.} \\		
+~\\
+\textbf{Proof\,:} Under the coordinate transformation in Equ.10.1
+\begin{equation}
+\left\{		% 大括号公式的写法
+\begin{aligned}
+\displaystyle 
+t &=\frac{1}{3}(x_{0})^{3}\\
+x &=2\sqrt{2}e^{x^{1}/2}\\
+y &=-2e^{-x^{2}/2}\\
+z &=x^{3}\\
+\end{aligned}
+\right.	% 注意这个点不要拉下\right.	
+		\tag{10.1}
+\end{equation}
+We can get $\dif s^{2}=-\dif t^{2}+\dif x^{2}+\dif y^{2}+\dif z^{2}$, so the space-time is flat.\\
+~\\
+Q.E.D.
+~\\
+~\\
+\end{document}  
