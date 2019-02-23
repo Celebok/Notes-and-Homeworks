@@ -1,0 +1,917 @@
+% XeLaTeX can use any Mac OS X font. See the setromanfont command below.
+% Input to XeLaTeX is full Unicode, so Unicode characters can be typed directly into the source.
+
+% The next lines tell TeXShop to typeset with xelatex, and to open and save the source with Unicode encoding.
+
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[12pt]{article}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+\geometry{left=1.5cm,right=2.5cm,top=2.0cm,bottom=2.5cm}
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{ragged2e}          % 两端对齐
+\usepackage{color}             	% 字体颜色
+\usepackage{indentfirst}		% 首行缩进
+\usepackage{xeCJK}			 % 中日韩语对应宏包
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{url}		% 插入网址超链接
+
+\usepackage{amsmath,bm}             % 数学符号与特殊字符
+\usepackage{caption} 			% 插图和表格标题格式设置
+\usepackage{hyperref} 			%  创建超文本链接和PDF书签
+\usepackage{float}			% 设置插入图片格式，比如使插入图片紧跟在对应文字之后的用法时\begin{figure}[H] ... \end{figure}
+
+\usepackage{setspace}		%使用间距宏包
+\usepackage{mathrsfs}		% 花体字母，然后使用\mathscr{A}命令
+\usepackage{longtable}		% 制作跨页长表格
+% Will Robertson's fontspec.sty can be used to simplify font choices.
+% To experiment, open /Applications/Font Book to examine the fonts provided on Mac OS X,
+% and change "Hoefler Text" to any of these choices.
+
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont[Mapping=tex-text]{Hoefler Text}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+\setmonofont[Scale=MatchLowercase]{Andale Mono}
+\setCJKmainfont{华文宋体}		% 输出中文，我的中文字体是系统自带的华文宋体
+
+\title{吉林大学物理学院理论物理中心群论习题参考答案（第一版）}
+\author{达朗古德·苏日力格}
+\date{2019年1月1日}                                           % Activate to display a given date or no date
+\numberwithin{equation}{section}	 % 我们可使用amsmath 宏包提供的numberwithin 命令来实现公式与章节的关联
+\allowdisplaybreaks[4]			 % 允许多行公式跨页
+
+
+\begin{document}
+\maketitle
+\setlength{\parindent}{0pt}	% 取消首行缩进，如果需要缩进，则将0pt设置为所需数量的pt，一般为2pt
+\thispagestyle{empty}		% 此页不显示页码
+
+
+\newpage
+\renewcommand{\abstractname}{{\Large{第一版摘要}}}  	% 将Abstract改为摘要
+\par\setlength{\parindent}{2pt}
+\thispagestyle{empty}		% 目录页不显示页码
+\begin{abstract}
+~\\
+\par 简要说两句，这份文档是由吉林大学物理学院三只青蛙工作室出品的参考答案，我是作者达朗古德·苏日力格。文档中所涉及到的题目由吉林大学物理学院戴振文老师提供。答案由我个人完成，仅供参考。\\
+\par 关于群论这门课程的重要性，我就不多说了。如果此时你身在吉大，想要完全学好学透群论，就不要指望只靠戴老师上课讲的那点知识点，那些只能应付考试，还不能保证一定拿高分。我建议是课$+$PPT$+$其他适合自己的资料$+$大量刷题，刷题这一点，想要学好任何一门物理或数学的学科，这都是绕不开的。这个文档就是为了方便大家在课下巩固提高用的。而对于某些已经学过群论的同学，特别是完全从数学入手的同学，我的建议是，在保证对相关内容理解正确的前提下，考试按照戴老师那一套写，平时按自己的理解来就行。\\
+\par 如果同学们想要对文档内容提出相关改进意见，或与我们讨论相关问题，欢迎面基，或发送邮件至\url{SuriligeDhalenguite@gmail.com}，发送邮件请同时注明姓名、学院等信息，否则不予回复。\\
+\par {\color{blue}三只青蛙工作室对本文档享有一切形式的著作权与解释权}。为保证学风，严肃吉林大学物理学院考风考纪，除创始人外，此文档原则上仅由物理学院理论中心和超硬材料国家重点实验室中部分老师、本科生和研究生保管与使用，严禁未经创始人允许私自传阅给闲杂人等，否则永久取消合作资格并追究相应责任。本工作室严禁将此文档上传至百度文库、道客巴巴以及知乎等各大国内网站与平台，相关$\LaTeX$源码及支持材料会酌情发布在部分国外网站，供同学们参考学习。其余物理学院同学或外院外校同学获得本文档的要求为必须认识三只青蛙工作室中至少两名成员，并承诺遵守上述传播条件，以及自愿承担违规行为所带来一切后果。\\
+\par 祝同学们学习愉快，共同进步！！！
+\end{abstract}
+
+
+\newpage
+\thispagestyle{empty}		% 目录页不显示页码
+\renewcommand\contentsname{\centering{目\qquad 录}}	% 将Content改为摘要
+\tableofcontents
+
+
+\begin{spacing}{1.5}			% 行间距变为double-space
+
+% \newfontfamily{\A}{Geeza Pro}
+% \newfontfamily{\H}[Scale=0.9]{Lucida Grande}
+
+\newcommand*{\dif}{\mathop{}\!\mathrm{d}} 		% \mathop{}用来输出直立黑体的微分算子，如\mathop{d}，为了简略我们使用\dif代替\mathop{d}
+% Here are some multilingual Unicode fonts: this is Arabic text: {\A السلام عليكم}, this is Hebrew: {\H שלום}, 
+% and here's some Japanese: {\J 今日は}.
+
+
+\newpage
+\setcounter{page}{1}			% 从下面开始编页码
+\section{第一章习题——群的基本概念}
+~\\
+~\\
+~\\
+\textbf{1.1 \quad 下列定义了二元运算的集合是否构成群，并说明理由。\\
+（1）在复数加法下全体复数构成的集合；\\
+（2）在矩阵乘法下所有幺正矩阵构成的集合；\\
+（3）在数的减法下所有整数构成的集合；\\
+（4）在数的乘法下所有实数构成的集合。}\\
+~\\
+解：（1）正确。对$\forall x \in C$\\
+单位元：$0$；逆元：$-x$；$x+(-x)=0$，满足封闭性和结合律。\\
+（2）正确。单位元：单位矩阵$I$，存在逆元，满足封闭性和结合律。\\
+（3）错误。不满足结合律。\\
+（4）正确。理由与（1）类似。\\
+~\\
+~\\
+~\\
+\textbf{1.2 \quad 已知$\displaystyle \omega=e^{i\frac{2\pi}{3}}$，验证矩阵集合$\displaystyle \left\{ \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} , \begin{bmatrix} \omega & 0 \\ 0 & \omega^{2} \end{bmatrix} ,\begin{bmatrix} \omega^{2} & 0 \\ 0 & \omega \end{bmatrix} , \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} , \begin{bmatrix} 0 & \omega^{2} \\ \omega & 0 \end{bmatrix} , \begin{bmatrix} 0 & \omega \\ \omega^{2} & 0 \end{bmatrix} \right\}$ 在矩阵乘法下构成群，且与$D_{3}$群同构。}\\
+~\\
+解：令$e =\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$，$a =\begin{bmatrix} \omega & 0 \\ 0 & \omega^{2} \end{bmatrix}$，$b =\begin{bmatrix} \omega^{2} & 0 \\ 0 & \omega \end{bmatrix}$，$c =\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$，$d =\begin{bmatrix} 0 & \omega \\ \omega^{2} & 0 \end{bmatrix}$，$f =\begin{bmatrix} 0 & \omega^{2} \\ \omega & 0 \end{bmatrix}$，\\
+~\\
+对应该矩阵群和$D_{3}$群的群表得 \\
+\begin{center}
+\begin{longtable}{l|cccccc}
+\caption{矩阵群群表}\\
+	G & e & a & b & c & d & f \\
+	\hline
+	e & e & a & b & c & d & f \\
+	a & a & b & e & f & c & d \\
+	b & b & e & a & d & f & c \\
+	c & c & d & f & e & a & b \\
+	d & d & f & c & b & e & a \\
+	f & f & c & d & a & b & e \\
+\end{longtable}
+\begin{longtable}{l|cccccc}
+\caption{$D_{3}$群群表}\\
+	$D_{3}$ & e & $c_{3}$ & $c_{3}^{2}$ & $c'_{2}$ & $c''_{2}$ & $c'''_{2}$ \\
+	\hline
+	e & e & $c_{3}$ & $c_{3}^{2}$ & $c'_{2}$ & $c''_{2}$ & $c'''_{2}$ \\
+	$c_{3}$ & $c_{3}$ & $c_{3}^{2}$ & e & $c'''_{2}$ & $c'_{2}$ & $c''_{2}$ \\
+	$c_{3}^{2}$ & $c_{3}^{2}$ & e & $c_{3}$ & $c''_{2}$ & $c'''_{2}$ & $c'_{2}$ \\
+	$c'_{2}$ & $c'_{2}$ & $c''_{2}$ & $c'''_{2}$ & e & $c_{3}$ & $c_{3}^{2}$ \\
+	$c''_{2}$ & $c''_{2}$ & $c'''_{2}$ & $c'_{2}$ & $c_{3}^{2}$ & e & $c_{3}$ \\
+	$c'''_{2}$ & $c'''_{2}$ & $c'_{2}$ & $c''_{2}$ & $c_{3}$ & $c_{3}^{2}$ & e \\
+\end{longtable}
+\end{center}
+显然二者同构。\\
+~\\
+~\\
+~\\
+\textbf{1.3 \quad 证明群的任何两个左陪集或者完全相等，或者没有任何公共元素。}\\
+~\\
+证明：设群S有两个陪集：$R_{1}S$和$R_{2}S$，假设两陪集有一个公共元素，即$R_{1}S_{m}=R_{2}S_{n}$ \\
+$\therefore$
+\begin{equation}
+R_{1} = R_{2}S_{n}S_{m}^{-1} \Longrightarrow R_{2}^{-1}R_{1} = S_{n}S_{m}^{-1} \in S
+\end{equation}
+由重排定理得
+\begin{equation}
+R_{2}^{-1}R_{1}S = S \Longrightarrow R_{1}S = R_{2}S
+\end{equation}
+$\therefore$ 群的任何两个左陪集或者完全相等，或者没有任何公共元素。
+~\\
+~\\
+~\\
+\textbf{1.4 \quad 证明群阶为质数的有限群必为Abel群。}\\
+~\\
+解：设群$G$的阶数为$g$，对某个非单位元素$a \in G$，对有限群存在$a^{n}=e(n \ne 1)$，$a$产生$G$的$n$阶子群。\\
+由于$\displaystyle \frac{g}{n}$为整数且$n \le g$，若$g$为质数且$n \ne 1$，必有$n=g$，则$G$是由$a$产生的$n$阶循环群，是Abel群。\\
+~\\
+~\\
+~\\
+\textbf{1.5 \quad H是G的正规子群，N又是H的正规子群，那么N是否一定是G的正规子群？}\\
+~\\
+解：不是，由题设可知，对于任意$a_{i} \in (G/H)$，有$Ha_{i}=a_{i}H$；$a_{j} \in (H/N)$，有$Na_{j}=a_{j}N$。但对于$a_{k} \in (G/N)$，不一定有$Na_{k}=a_{k}N$。\\
+~\\
+例如：设$G=C_{4v}$，$H=C_{2v}$，$N=C_{1v}$，其中
+\begin{equation}
+C_{4v} = \{e,c_{4},c_{4}^{2},c_{4}^{3},m_{x},m_{y},\sigma_{\mu},\sigma_{\nu}\} \quad C_{2v} = \{e,c_{4}^{2},m_{x},m_{y}\} \quad C_{1v} = \{e,m_{x}\}
+\end{equation}
+显然$C_{2v}$是$C_{4v}$的正规子群，$C_{1v}$是$C_{2v}$的正规子群，但对于$c_{4} \in (C_{4v}/C_{2v})$，存在
+\begin{equation}\nonumber 		% \nonumber使该公式不编号
+c_{4}\{e,m_{x}\} = \{c_{4},\sigma_{\mu}\} \quad \{e,m_{x}\}c_{4} = \{c_{4},\sigma_{\nu}\}
+\end{equation}
+所以$\{c_{4},\sigma_{\mu}\} \ne \{c_{4},\sigma_{\nu}\}$，即$c_{4}C_{1v} \ne C_{1v}c_{4}$，$C_{1v}$是$C_{2v}$的正规子群，但不是$C_{4v}$的正规子群。
+~\\
+~\\
+~\\
+\textbf{1.6 \quad H是G的子群，证明a和b同属于H的同一个左陪集的充要条件是$a^{-1}b \in H$。}\\
+~\\
+证明：\\
+$\bullet$ 必要条件：设H是G的正规子群，则有$\forall R \in (G \backslash H)$，RH是G的一个左陪集，设$a,b \in RH$，其中$a=Rh_{i}$，$b=Rh_{j}$ \\				 % \backslash表示“\”
+$\therefore$ 
+\begin{equation}
+a^{-1}=h_{i}^{-1}R^{-1} \Longrightarrow a^{-1}b=h_{i}^{-1}R^{-1}Rh_{j}=h_{i}^{-1}h_{j} \in H
+\end{equation}
+$\therefore a^{-1}b \in H$ \\
+$\bullet$ 充分条件：设$a \in RH$，令$a=Rh_{m}$，$a^{-1}b = h_{n} \in H$ \\
+\begin{equation}
+b = aa^{-1}b = Rh_{m}h_{n} = Rh_{k} \in RH
+\end{equation}
+$\therefore a,b$属于H的同一个左陪集。\\
+~\\
+~\\
+~\\
+\textbf{1.8 \quad H是G的子群，$\forall x\in G$，证明集合$xHx^{-1}=\{ xhx^{-1}, h\in H\}$也是G的子群（称为H的共轭子群）。}\\		
+% \forall与\exists代表任意与存在 
+~\\
+证明：将$xHx^{-1}=\{ xhx^{-1}, h\in H\}$记为$H'$，则有\\
+$\bullet$ 单位元：$xex^{-1}=xx^{-1}=e$ \\
+$\bullet$ 封闭性：$(xh_{i}x^{-1})(xh_{j}x^{-1})=xh_{i}h_{j}x^{-1}=xh_{k}x^{-1} \in H'$ \\
+$\bullet$ 逆元：$(xhx^{-1})^{-1}=((x^{-1})^{-1}h^{-1}x^{-1})=xh^{-1}x^{-1}$ \\
+$\bullet$ 结合律：$(xh_{i}x^{-1})(xh_{j}x^{-1})(xh_{k}x^{-1}) = (xh_{i}x^{-1})(xh_{n}x^{-1}) = (xh_{m}x^{-1})(xh_{k}x^{-1}) = xh_{l}x^{-1}$，其中$h_{l}=h_{i}h_{j}h_{k}$。\\
+~\\
+~\\
+~\\
+\textbf{1.9 \quad 证明四阶群只有两种，一种是循环群，另一种是非循环的Abel群。}\\
+~\\
+解：由重排定理，四阶群的群表只有两种，分别是循环群$C_{4}$和非循环的Abel群Klein群，群表如下所示：\\
+\begin{minipage}{\textwidth}
+\begin{minipage}[t]{0.45\textwidth}
+  \centering
+	\makeatletter\def\@captype{table}\makeatother\caption{$C_{4}$群群表}
+	\begin{tabular}{l|cccc}  % lcr分别代表元素居左中右对齐
+		$C_{4}$ & $e$ & $a$ & $b$ & $c$\\  
+		\hline  
+		$e$ & $e$ & $a$ & $b$ & $c$\\  
+		$a$ & $a$ & $b$ & $c$ & $e$\\ 
+		$b$ & $b$ & $c$ & $e$ & $a$\\
+		$c$ & $c$ & $e$ & $a$ & $b$\\
+	\end{tabular}
+\end{minipage}
+\begin{minipage}[t]{0.45\textwidth}
+   \centering
+	\makeatletter\def\@captype{table}\makeatother\caption{Klein群群表}
+	\begin{tabular}{l|cccc}  % lcr分别代表元素居左中右对齐
+	$V$ & $e$ & $a$ & $b$ & $c$\\  
+	\hline  
+	$e$ & $e$ & $a$ & $b$ & $c$\\  
+	$a$ & $a$ & $e$ & $c$ & $b$\\ 
+	$b$ & $b$ & $c$ & $e$ & $a$\\
+	$c$ & $c$ & $b$ & $a$ & $e$\\
+	\end{tabular}
+\end{minipage}
+\end{minipage}
+~\\
+~\\
+~\\
+\textbf{1.10 \quad 证明直积群$G=G^{a} \otimes G^{b}$的类的数目等于直因子群$G^{a}$和$G^{b}$的类的个数的乘积。}\\
+~\\
+证明：设$A_{i} \in G^{a}$，$B_{j} \in G^{b}$ \\
+$\therefore A_{i}B_{j} \in G$，对$\forall A_{i}B_{j} \in G$
+\begin{equation}
+(A_{l}B_{m})(A_{i}B_{j})(B_{m}^{-1}A_{l}^{-1}) = (A_{l}A_{i}A_{l}^{-1})(B_{m}B_{j}B_{m}^{-1})
+\end{equation}
+显然有
+\begin{align*}
+A_{l}A_{i}A_{l}^{-1} \in C^{A}_{A_{i}} \quad B_{m}B_{j}B_{m}^{-1} \in C^{B}_{B_{j}} \\
+(A_{l}B_{m})(A_{i}B_{j})(B_{m}^{-1}A_{l}^{-1}) \in C^{AB}_{A_{i}B_{j}}
+\end{align*}
+即有直积群$G=G^{a} \otimes G^{b}$的类的数目等于直因子群$G^{a}$和$G^{b}$的类的个数的乘积。\\
+~\\
+~\\
+~\\
+\textbf{1.17 \quad 证明：群中的单位元和逆元都是唯一的。}\\
+~\\
+证明：设群G存在两个单位元$e_{1}$和$e_{2}$，对某一群元$g$有$e_{1}=gg^{-1}$以及
+\begin{equation}\nonumber 		% \nonumber使该公式不编号
+g=ge_{1}=e_{1}g \quad g=ge_{2}=e_{2}g
+\end{equation}
+$\therefore$
+\begin{equation}
+e_{2}=e_{2}e_{1}=e_{2}gg^{-1}=(e_{2}g)g^{-1}=gg^{-1}=e_{1}
+\end{equation}
+$\therefore e_{2}=e_{1}$，单位元唯一。类似有设G中某一群元$g$有两个逆元$g_{1}^{-1}$和$g_{2}^{-1}$，则有$e=gg_{1}^{-1}=g_{1}^{-1}g$和$e=gg_{2}^{-1}=g_{2}^{-1}g$，\\
+$\therefore$
+\begin{equation}
+g_{1}^{-1} = g_{1}^{-1}e = g_{1}^{-1}(gg_{2}^{-1}) = (g_{1}^{-1}g)g_{2}^{-1} = eg_{2}^{-1} = g_{2}^{-1}
+\end{equation}
+$\therefore g_{1}^{-1}=g_{2}^{-1}$，逆元也唯一。
+~\\
+~\\
+~\\
+\textbf{1.18 \quad 证明：二阶循环群与四阶循环群同态。}\\
+~\\
+证明：$C_{2} = \{e,a\}$，$C_{4} = \{e,a,a^{2},a^{3}\} \Rightarrow C_{4} = \{e,r,r^{2},r^{3}\}$
+$\because$
+\begin{equation}
+e \leftrightarrow \{e,r^{2}\} \quad a \leftrightarrow \{r,r^{3}\}
+\end{equation}
+$\therefore C_{2} \simeq C_{4}$ 二者同态。\\
+~\\
+~\\
+~\\
+\textbf{1.19 \quad 试证两个或多个群元乘积的逆元素等于各逆元素按相反顺序的乘积，即$\forall g_{i} \in G$，有$(g_{i}g_{j} \cdot\cdot\cdot g_{m}g_{n})^{-1} = g_{n}^{-1}g_{m}^{-1} \cdot\cdot\cdot g_{j}^{-1}g_{i}^{-1}$。}\\
+~\\
+证明：
+\begin{equation}
+(g_{i}g_{j} \cdot\cdot\cdot g_{m}g_{n})(g_{i}g_{j} \cdot\cdot\cdot g_{m}g_{n})^{-1} = e
+\end{equation}
+两端依次左乘$g_{i}^{-1}$，$g_{j}^{-1}$，$\cdot\cdot\cdot$，$g_{m}^{-1}$，$g_{n}^{-1}$得
+\begin{align*}
+g_{i}^{-1}(g_{i}g_{j} \cdot\cdot\cdot g_{m}g_{n})(g_{i}g_{j} \cdot\cdot\cdot g_{m}g_{n})^{-1} = g_{i}^{-1} \\
+g_{j}^{-1}(g_{j} \cdot\cdot\cdot g_{m}g_{n})(g_{i}g_{j} \cdot\cdot\cdot g_{m}g_{n})^{-1} = g_{j}^{-1}g_{i}^{-1} \\
+\end{align*}
+$$\cdot\cdot\cdot$$ 
+\begin{align*}
+(g_{i}g_{j} \cdot\cdot\cdot g_{m}g_{n})^{-1} = g_{n}^{-1}g_{m}^{-1} \cdot\cdot\cdot g_{j}^{-1}g_{i}^{-1} 
+\end{align*}
+
+
+
+\newpage
+\section{第二章习题——群表示理论}
+~\\
+~\\
+~\\
+\textbf{2.1 \quad 为什么任何群都有单位表示做为它的一种不可约表示？}\\
+~\\
+解：将群G中的全部元素映射至一维单位矩阵$\bm1$，使这样的映射满足同态性质：$\hat{G}(g_{1}g_{2}) = \hat{G}(g_{1})\hat{G}(g_{2}) = \bm1$，其中$g_{1},g_{2} \in G$。\\
+$\therefore$ 一维单位矩阵$\bm1$组成的$\hat{G} = [1]$是群G的一个表示，任何群都存在这样一个平凡表示。\\
+~\\
+~\\
+~\\
+\textbf{2.2 \quad 说明有限群任何一维表示的模必为$1$。}\\
+~\\
+解：群的任何表示均有其等价的幺正表示，而一维表示在相似变换下保持不变，是幺正表示，所以有$\|\bm{1}\|=1$。
+~\\
+~\\
+~\\
+\textbf{2.3 \quad 证明：除恒等表示外，有限群的任一不可约表示的特征标对群元求和为零。}\\
+~\\
+证明：\\
+$\because$
+\begin{equation}
+\sum_{R} \chi^{i}(R)^{*}\chi^{j}(R) = g\delta_{ij}
+\end{equation}
+令$\chi^{i}(R)^{*} = 1$，则有一维不可约表示$D^{i}(R) = D^{i}(e) = \bm1$。\\
+$\therefore$
+\begin{equation}
+\sum_{R} \chi^{j}(R) = g\delta_{ij} = \left\{		% 大括号公式的写法
+\begin{aligned}
+0 , \; & j \ne 1 \; \text{（非恒等表示）} \\
+1 , \; & j=1 \; \text{（恒等表示）}\\
+\end{aligned}
+\right.	% 注意这个点不要拉下\right.	
+\end{equation}
+~\\
+~\\
+~\\
+\textbf{2.4 \quad 当有限群的某一表示所有表示矩阵都乘以同一常数之后组成的矩阵集合，是否仍为该群的表示？}\\
+~\\
+解：不是\\
+所有表示矩阵都乘以同一常数之后，表示矩阵变化为
+\begin{equation}\nonumber 		% \nonumber使该公式不编号
+D(g_{1})\rightarrow cD(g_{1}) \quad D(g_{2})\rightarrow cD(g_{2}) \quad D(g_{1}g_{2})\rightarrow cD(g_{1}g_{2})
+\end{equation}
+但当$c \ne 0,1$时，
+\begin{equation}
+cD(g_{1}) \cdot cD(g_{2}) = c^{2}D(g_{1}g_{2}) \ne cD(g_{1}g_{2})
+\end{equation}
+显然新的集合不是该群的表示。
+~\\
+~\\
+~\\
+\textbf{2.5 \quad $D^{j}$是有限群G的一个不可约表示。证明：G中同一类元素在$D^{j}$上的表示矩阵之和必为单位矩阵的常数倍。}\\
+~\\
+证明：由Schur引理，若一非零矩阵A与G某个表示所有表示对易，若该表示不可约，则必有$A=cI_{0}$。设K为G的一个类，$k_{i} (i=1,2,\cdot\cdot\cdot,n)$为其群元，且有$\displaystyle A=\sum_{i=1}^{n}D^{j}(k_{i})$，由于$k_{i}$为共轭类：\\
+$\therefore$
+\begin{align*}
+(D^{j}(g))^{-1}AD^{j}(g) &= \sum_{i=1}^{n} (D^{j}(g))^{-1}D^{j}(k_{i})D^{j}(g) \\
+&= \sum_{i=1}^{n}D^{j}(k_{i}) = A
+\end{align*}
+$\therefore$
+\begin{equation}
+AD^{j}(g) = D^{j}(g)A \Longrightarrow A=cI_{0}
+\end{equation}
+~\\
+~\\
+~\\
+\textbf{2.6 \quad 三维实空间的基矢为$(\hat{e}_{1}, \hat{e}_{2}, \hat{e}_{3})$。求$D_{3}$群在该空间上的表示，并判断该表示是否为不可约表示。}\\
+~\\
+解：
+\begin{equation}
+D_{3} = \{ e,c_{3},c_{3}^{2},c_{2}',c_{2}'',c_{2}''' \}
+\end{equation}
+在基矢$(\hat{e}_{1}, \hat{e}_{2}, \hat{e}_{3})$下，对三维空间中矢量$\bm{r} = x\hat{e}_{1}+y\hat{e}_{2}+z\hat{e}_{3}$有
+\begin{equation}
+\left\{		% 大括号公式的写法
+\begin{aligned}
+c_{3}\hat{e}_{1} &= -\frac{1}{2}\hat{e}_{1} + \frac{\sqrt{3}}{2}\hat{e}_{2} \\
+c_{3}\hat{e}_{2} &= -\frac{\sqrt{3}}{2}\hat{e}_{1} - \frac{1}{2}\hat{e}_{2}\\
+c_{3}\hat{e}_{3} &= \hat{e}_{3}
+\end{aligned}
+\right.	% 注意这个点不要拉下\right.
+\qquad
+\left\{		% 大括号公式的写法
+\begin{aligned}
+c_{2}'\hat{e}_{1} &= -\hat{e}_{1}\\
+c_{2}'\hat{e}_{1} &= \hat{e}_{2}\\
+c_{2}'\hat{e}_{3} &= -\hat{e}_{3}
+\end{aligned}
+\right.	% 注意这个点不要拉下\right.
+\end{equation}
+$\therefore$
+\begin{align*}
+M(e) &= \begin{bmatrix} 1 & \quad & \quad \\ \quad & 1 & \quad \\ \quad & \quad & 1 \end{bmatrix} \quad M(c_{3}) = \begin{bmatrix} -\frac{1}{2} & -\frac{\sqrt{3}}{2} & \quad \\ \frac{\sqrt{3}}{2} & -\frac{1}{2} & \quad \\ \quad & \quad & 1 \end{bmatrix} \\
+M(c_{3}^{2}) &= \begin{bmatrix} -\frac{1}{2} & \frac{\sqrt{3}}{2} & \quad \\ -\frac{\sqrt{3}}{2} & -\frac{1}{2} & \quad \\ \quad & \quad & 1 \end{bmatrix} \quad M(c_{2}') = \begin{bmatrix} -1 & \quad & \quad \\ \quad & 1 & \quad \\ \quad & \quad & -1 \end{bmatrix} \\
+M(c_{2}'') &= \begin{bmatrix} \frac{1}{2} & \frac{\sqrt{3}}{2} & \quad \\ \frac{\sqrt{3}}{2} & -\frac{1}{2} & \quad \\ \quad & \quad & 1 \end{bmatrix} \quad M(c_{2}''') = \begin{bmatrix} \frac{1}{2} & -\frac{\sqrt{3}}{2} & \quad \\ -\frac{\sqrt{3}}{2} & -\frac{1}{2} & \quad \\ \quad & \quad & 1 \end{bmatrix}
+\end{align*}
+综上可得$\chi(e)=3$，$\chi(c_{3})=\chi(c_{3}^{2})=0$，$\chi(c_{2}')=\chi(c_{2}'')=\chi(c_{2}''')=-1$\\
+$\therefore$
+\begin{equation}
+\sum_{R}\chi(R)^{*}\chi(R) = 1\cdot3^{2} + 2\cdot0^{2} + 3\cdot(-1)^{2} \ne 6
+\end{equation}
+该表示可约。\\
+~\\
+~\\
+~\\
+\textbf{2.7 \quad 某线性空间的基为$\{u_{1}(\bm{r})=x^{2}-y^{2}, u_{2}(\bm{r})=2xy\}$。该空间是否构成$C_{3v}$群的封闭线性空间？}\\
+~\\
+解：
+\begin{equation}
+\bm{r} = x\hat{e}_{1}+y\hat{e}_{2} \longrightarrow \left\{ \begin{aligned}
+u_{1}(\bm{r}) &= x^{2}-y^{2} = \left( \hat{e}_{1}\cdot\bm{r} \right)^{2} - \left( \hat{e}_{2}\cdot\bm{r} \right)^{2}\\
+u_{2}(\bm{r}) &= 2xy = 2\left( \hat{e}_{1}\cdot\bm{r} \right) \left( \hat{e}_{2}\cdot\bm{r} \right)
+\end{aligned} \right.
+\end{equation}
+$\therefore$
+\begin{equation}
+T(c_{3})u_{1}(\bm{r}) = u_{1}(c_{3}^{-1}\bm{r}) u_{1}(c_{3}^{2}\bm{r})
+\end{equation}
+$\because$
+\begin{equation}
+c_{3}^{2}\bm{r} = c_{3}^{2}\left(x\hat{e}_{1}+y\hat{e}_{2}\right) = \left( -\frac{1}{2}x + \frac{\sqrt{3}}{2}y \right)\hat{e}_{1} + \left( -\frac{\sqrt{3}}{2}x - \frac{1}{2}y\right)\hat{e}_{2}
+\end{equation}
+$\therefore$
+\begin{align*}
+T(c_{3})u_{1}(\bm{r}) &= \left( -\frac{1}{2}x + \frac{\sqrt{3}}{2}y \right)^{2} + \left( -\frac{\sqrt{3}}{2}x - \frac{1}{2}y\right)^{2} = -\frac{1}{2}\left(x^{2}-y^{2}\right) - \sqrt{3}xy \\
+&= -\frac{1}{2}u_{1}(\bm{r}) - \frac{\sqrt{3}}{2}u_{2}(\bm{r}) \\
+T(c_{3})u_{2}(\bm{r}) &= 2 \left( -\frac{1}{2}x + \frac{\sqrt{3}}{2}y \right) \left( -\frac{\sqrt{3}}{2}x - \frac{1}{2}y\right) = \frac{\sqrt{3}}{2}\left(x^{2}-y^{2}\right) - xy \\
+&= \frac{\sqrt{3}}{2}u_{1}(\bm{r}) - \frac{1}{2}u_{2}(\bm{r})
+\end{align*}
+$\therefore$ 该空间对$T(c_{3})$构成封闭空间，同理可得对$T(c_{3}^{2})$也构成封闭空间。由于$\sigma_{1}\bm{r} = -x\hat{e}_{1}+y\hat{e}_{2}$，利用类似的方法可得
+\begin{align*}
+T(e)u_{1}(\bm{r}) = u_{1}(\bm{r}) &\quad T(e)u_{2}(\bm{r}) = u_{2}(\bm{r}) \\
+T(\sigma_{1})u_{1}(\bm{r}) = u_{1}(\bm{r}) &\quad T(\sigma_{1})u_{2}(\bm{r}) = -u_{2}(\bm{r}) \\
+T(\sigma_{2})u_{1}(\bm{r}) = -\frac{1}{2}u_{1}(\bm{r}) + \frac{\sqrt{3}}{2}u_{2}(\bm{r}) &\quad T(\sigma_{2})u_{2}(\bm{r}) = \frac{\sqrt{3}}{2}u_{1}(\bm{r}) + \frac{1}{2}u_{2}(\bm{r}) 
+\end{align*}
+同理可得对$T(\sigma_{3})$也构成封闭空间，综上所述，该空间构成了$C_{3v}$群的封闭线性空间。\\
+~\\
+~\\
+~\\
+\textbf{2.8 \quad 设$C_{4v}$群对称操作的主轴沿z轴方向，求$C_{4v}$群在线性空间$\{u_{1}=x^{2}, u_{2}=y^{2}, u_{3}=2xy\}$上的表示，并判断该表示是否可约。如果可约，含有哪些不可约表示？}\\
+~\\
+解：\begin{equation}
+C_{4v} = \{e,c_{4},c_{4}^{2},c_{4}^{3},\sigma_{\mu},\sigma_{\nu},m_{x},m_{y}\}
+\end{equation}
+$\because T(c_{4})u_{1}(\bm{r}) = u_{1}(c_{4}^{-1}\bm{r}) = u_{1}(c_{4}^{3}\bm{r}) = \left( \hat{e}_{1}\cdot c_{4}^{3}\bm{r} \right)^{2} = y^{2} = u_{2}$\\
+$\therefore$
+\begin{equation}\nonumber 		% \nonumber使该公式不编号
+\left\{		% 大括号公式的写法
+\begin{aligned}
+T(c_{4})u_{2}(\bm{r}) &= \left( \hat{e}_{2}\cdot c_{4}^{3}\bm{r} \right)^{2} = x^{2} = u_{1} \\
+T(c_{4})u_{3}(\bm{r}) &= 2\left( \hat{e}_{1}\cdot c_{4}^{3}\bm{r} \right)\left( \hat{e}_{2}\cdot c_{4}^{3}\bm{r} \right) = -2xy = -u_{3}
+\end{aligned}
+\right.	% 注意这个点不要拉下\right.
+\end{equation}
+$\therefore$
+\begin{align*}
+M(e) = M(c_{4}^{2}) &= \begin{bmatrix} 1 & \quad & \quad \\ \quad & 1 & \quad \\ \quad & \quad & 1 \end{bmatrix} \\
+M(c_{4}) = M(c_{4}^{3}) &= \begin{bmatrix} 0 & 1 & \quad \\ 1 & 0 & \quad \\ \quad & \quad & -1 \end{bmatrix} \\
+M(\sigma_{\mu}) = M(\sigma_{\nu}) &= \begin{bmatrix} 1 & \quad & \quad \\ \quad & 1 & \quad \\ \quad & \quad & -1 \end{bmatrix} \\
+M(m_{x}) = M(m_{y}) &= \begin{bmatrix} 0 & 1 & \quad \\ 1 & 0 & \quad \\ \quad & \quad & 1 \end{bmatrix} \\
+\end{align*}
+$C_{4v}$群不可约表示特征标表为 \\
+\begin{longtable}{c|cccccc}
+\caption{特征标表}\\
+	$C_{4v}$ & $\{e\}$ & $\{c_{4},c_{4}^{3}\}$ & $\{c_{4}^{2}\}$ & $\{\sigma_{\mu},\sigma_{\nu}\}$ & $\{m_{x},m_{y}\}$ \\
+	\hline
+	$\chi^{(1)}$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+	$\chi^{(2)}$ & $1$ & $-1$ & $1$ & $-1$ & $1$ \\
+	$\chi^{(3)}$ & $1$ & $-1$ & $1$ & $1$ & $-1$ \\
+	$\chi^{(4)}$ & $1$ & $1$ & $1$ & $-1$ & $-1$ \\
+	$\chi^{(5)}$ & $2$ & $0$ & $-2$ & $0$ & $0$ \\
+\end{longtable}
+$C_{4v}$有五个类：$\{e\}$，$\{c_{4},c_{4}^{3}\}$，$\{c_{4}^{2}\}$，$\{\sigma_{\mu},\sigma_{\nu}\}$和$\{m_{x},m_{y}\}$，由不可约表示判据：
+\begin{align*}
+\frac{1}{g}\sum_{R}\chi^{*}(R)\chi(R) &= 1\cdot3^{2} + 2\cdot(-1)^{2} + 1\cdot3^{2} + 2\cdot1^{2} + 2\cdot1^{2} \\
+&= \frac{24}{8} = 3 = \sum_{j}\left|a_{j}\right|^{2}
+\end{align*}
+由约化系数公式$\displaystyle a_{i} = \frac{1}{g}\sum_{R}\chi^{i*}(R)\chi^{i}(R)$
+\begin{align*}
+a_{1} &= \frac{1}{8}(1\times1\times3+2\times1\times(-1)+1\times1\times3+2\times1\times1+2\times1\times1) = 1 \\
+a_{2} &= \frac{1}{8}(1\times1\times3+2\times(-1)\times(-1)+1\times1\times3+2\times(-1)\times1+2\times1\times1) = 1 \\
+a_{3} &= \frac{1}{8}(1\times1\times3+2\times(-1)\times(-1)+1\times1\times3+2\times1\times1+2\times(-1)\times1) = 1 \\
+a_{4} &= a_{5} = 0
+\end{align*}
+$\therefore$ $C_{4v}$的表示$D$可约化为$D=D^{1}\oplus D^{2}\oplus D^{3}$。\\
+~\\
+~\\
+~\\
+\textbf{2.9 \quad 群G存在两个表示$D^{a}$和$D^{b}$，有集合$D=\{D(A) = D^{a}(A) \otimes D^{b}(A), \, A \in G\}$。证明D也是G的一个表示。}\\
+~\\
+证明：
+\begin{align*}
+D(A)D(B) &= \left[D^{a}(A) \otimes D^{b}(A)\right]\left[D^{a}(B) \otimes D^{b}(B)\right] \\
+&= \left[D^{a}(A) D^{a}(B)\right] \otimes \left[D^{b}(A) D^{b}(B)\right] \\
+&= D^{a}(C) \otimes D^{b}(C) = D(C)
+\end{align*}
+存在单位元与逆元，满足结合律，D也是G的一个表示。\\
+~\\
+~\\
+~\\
+\textbf{2.10 \quad 群$C_{3h}$是群$C_{3} = \{e, c_{3}, c_{3}^{2}\}$和$C_{1h} = \{e, \sigma_{h}\}$的直积群，即$C_{3h}$。求$C_{3h}$所有不可约表示的特征标系。}\\
+~\\
+解：
+\begin{equation}
+C_{3h} = C_{3} \otimes C_{1h} = \{e, c_{3}, c_{3}^{2}, \sigma_{h}, c_{3}\sigma_{h}, c_{3}^{2}\sigma_{h}\}
+\end{equation}
+$C_{3}$群中的元素和$C_{1h}$群中的元素全部对易，即二者对易。$C_{3h}$群的表示可由$C_{3}$群和$C_{1h}$群的表示直积而来，而$C_{3}$群和$C_{1h}$群均为Abel群，不可约表示均为一维。\\
+由$\displaystyle \sum_{R}\chi^{i*}(R)\chi^{j}(R) = g\delta_{ij}$，对$C_{1h}$群有$\chi(e) = 1$，对$C_{3}$群有
+\begin{equation}
+\chi(e) = 1 \quad \chi(c_{3})\cdot\chi(c_{3})\cdot\chi(c_{3}) = \chi(c_{3}^{3}) = \chi(e) = 1
+\end{equation}
+$\therefore$
+\begin{equation}
+\chi(c_{3}) = 1,e^{i\frac{2}{3}\pi},e^{i\frac{4}{3}\pi}
+\end{equation}
+令$\displaystyle \omega = e^{i\frac{2}{3}\pi}$，$C_{3}$群和$C_{1h}$群特征标表为 \\
+~\\
+\begin{minipage}{\textwidth}
+	\begin{minipage}[t]{0.5\textwidth}
+	\centering
+	\makeatletter\def\@captype{table}\makeatother\caption{$C_{3}$群特征标表}
+	~\\
+	\begin{tabular*}{3.5cm}{l|ccc}  % lcr分别代表元素居左中右对齐
+		$C_{3}$ & $e$ & $c_{3}$ & $c_{3}^{2}$\\  
+		\hline  
+		$\chi^{(1)}$ & $1$  & $1$ & $1$ \\  
+		$\chi^{(2)}$ & $1$  & $\omega$ & $\omega^{2}$ \\ 
+		$\chi^{(3)}$ & $1$ & $\omega^{2}$ & $\omega$ \\ 
+	\end{tabular*}
+	\end{minipage}
+	\begin{minipage}[t]{0.5\textwidth}
+	\centering
+	\makeatletter\def\@captype{table}\makeatother\caption{$C_{1h}$群特征标表}
+	~\\
+	\begin{tabular*}{2.5cm}{l|cc}  % lcr分别代表元素居左中右对齐
+		$C_{1h}$ & $e$ & $\sigma_{h}$ \\  
+		\hline  
+		$\chi^{(1)}$ & $1$  & $1$ \\  
+		$\chi^{(2)}$ & $1$  & $-1$ \\ 
+	\end{tabular*}
+	\end{minipage}
+\end{minipage}
+~\\
+$\therefore$ $C_{3h}$群特征标表为 \\
+\begin{longtable}{l|cccccc}
+\caption{$C_{3h}$群特征标表}\\
+	$C_{3h}$ & e & $c_{3}$ & $c_{3}^{2}$ & $\sigma_{h}$ & $c_{3}\sigma_{h}$ & $c_{3}^{2}\sigma_{h}$ \\
+	\hline
+	$\chi^{(1)}$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+	$\chi^{(2)}$ & $1$ & $1$ & $1$ & $-1$ & $-1$ & $-1$ \\
+	$\chi^{(3)}$ & $1$ & $\omega$ & $\omega^{2}$ & $1$ & $\omega$ & $\omega^{2}$ \\
+	$\chi^{(4)}$ & $1$ & $\omega$ & $\omega^{2}$ & $-1$ & $-\omega$ & $-\omega^{2}$ \\
+	$\chi^{(5)}$ & $1$ & $\omega^{2}$ & $\omega$ & $1$ & $\omega^{2}$ & $\omega$ \\
+	$\chi^{(6)}$ & $1$ & $\omega^{2}$ & $\omega$ & $-1$ & $-\omega^{2}$ & $-\omega$ \\
+\end{longtable}
+~\\
+~\\
+~\\
+\textbf{2.11 \quad 求$C_{3h}$群在三维实空间上的表示，判断该表示是否可约。如果可约，利用投影算符法将表示空间约化。}\\
+~\\
+解：
+\begin{equation}
+C_{3h} = \{e, c_{3}, c_{3}^{2}, \sigma_{h}, c_{3}\sigma_{h}, c_{3}^{2}\sigma_{h}\}
+\end{equation}
+在三维实空间中：
+\begin{align*}
+&M(e) = \begin{bmatrix} 1 & \quad & \quad \\ \quad & 1 & \quad \\ \quad & \quad & 1 \end{bmatrix} \quad M(\sigma_{h}) = \begin{bmatrix} 1 & \quad & \quad \\ \quad & 1 & \quad \\ \quad & \quad & -1 \end{bmatrix} \\
+&M(c_{3}) = \begin{bmatrix} -\frac{1}{2} & -\frac{\sqrt{3}}{2} & \quad \\ \frac{\sqrt{3}}{2} & -\frac{1}{2} & \quad \\ \quad & \quad & 1 \end{bmatrix} \quad M(c_{3}^{2}) = \begin{bmatrix} -\frac{1}{2} & \frac{\sqrt{3}}{2} & \quad \\ -\frac{\sqrt{3}}{2} & -\frac{1}{2} & \quad \\ \quad & \quad & 1 \end{bmatrix} \\
+&M(c_{3}\sigma_{h}) = \begin{bmatrix} -\frac{1}{2} & -\frac{\sqrt{3}}{2} & \quad \\ \frac{\sqrt{3}}{2} & -\frac{1}{2} & \quad \\ \quad & \quad & -1 \end{bmatrix} \quad M(c_{3}^{2}\sigma_{h}) = \begin{bmatrix} -\frac{1}{2} & \frac{\sqrt{3}}{2} & \quad \\ -\frac{\sqrt{3}}{2} & -\frac{1}{2} & \quad \\ \quad & \quad & -1 \end{bmatrix}
+\end{align*}
+以及\\
+$$\chi(e)=3 \quad \chi(\sigma_{h})=1 \quad \chi(c_{3}) = \chi(c_{3}^{2}) = 0 \quad \chi(c_{3}\sigma_{h}) = \chi(c_{3}^{2}\sigma_{h}) = -2$$
+$\therefore$
+\begin{equation}\nonumber 		% \nonumber使该公式不编号
+\sum_{R}\chi^{*}(R)\chi(R) = 3^{2} + 2\times0^{2} + 1^{2} + 2\times(-2)^{2} = 18 \ne 6
+\end{equation}
+该表示可约，由约化系数公式$\displaystyle a_{i} = \frac{1}{g}\sum_{R}\chi^{i*}(R)\chi^{i}(R)$
+\begin{align*}
+a_{1} &= \frac{1}{6}\left( 1\times3 + 1\times0 + 1\times0 + 1\times1 + 1\times(-2) + 1\times(-2) \right) = 0 \\
+a_{2} &= \frac{1}{6}\left( 1\times3 + 1\times0 + 1\times0 + 1\times(-1) + (-1)\times(-2) + (-1)\times(-2) \right) = 1 \\
+a_{3} &= \frac{1}{6}\left( 1\times3 + \omega^{*}\times0 + (\omega^{2})^{*}\times0 + 1\times1 + \omega^{*}\times(-2) + (\omega^{2})^{*}\times(-2) \right) = 1 \\
+a_{4} &= \frac{1}{6}\left( 1\times3 + \omega^{*}\times0 + (\omega^{2})^{*}\times0 + 1\times(-1) + (-\omega^{*})\times(-2) + (-\omega^{2})^{*}\times(-2) \right) = 0 \\
+a_{5} &= \frac{1}{6}\left( 1\times3 + (\omega^{2})^{*}\times0 + \omega^{*}\times0 + 1\times1 + (\omega^{2})^{*}\times(-2) + \omega^{*}\times(-2) \right) = 1 \\
+a_{6} &= \frac{1}{6}\left( 1\times3 + (\omega^{2})^{*}\times0 + \omega^{*}\times0 + 1\times(-1) + (-\omega^{2})^{*}\times(-2) + (-\omega^{*})\times(-2) \right) = 0 \\
+\end{align*}
+利用投影算符$\displaystyle P_{j} = \frac{l_{i}}{g} \sum_{R} D^{j}(R)^{*} T(R)$，得
+\begin{align*}
+P_{2} &= \frac{1}{6}\left( T(e) + T(c_{3}) + T(c_{3}^{2}) - T(\sigma_{h}) - T(c_{3}\sigma_{h}) - T(c_{3}^{2}\sigma_{h}) \right) = \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 1\end{bmatrix} \\
+P_{3} &= \frac{1}{6}\left( T(e) + \omega^{*}T(c_{3}) + (\omega^{2})^{*}T(c_{3}^{2}) + T(\sigma_{h}) + \omega^{*}T(c_{3}\sigma_{h}) + (\omega^{2})^{*}T(c_{3}^{2}\sigma_{h}) \right) = \begin{bmatrix} \frac{1}{2} & \frac{i}{2} & \quad \\ -\frac{i}{2} & \frac{1}{2} & \quad \\ \quad & \quad & 1\end{bmatrix} \\
+P_{5} &= \frac{1}{6}\left( T(e) + (\omega^{2})^{*}T(c_{3}) + \omega^{*}T(c_{3}^{2}) + T(\sigma_{h}) + (\omega^{2})^{*}T(c_{3}\sigma_{h}) + \omega^{*}T(c_{3}^{2}\sigma_{h}) \right) = \begin{bmatrix} \frac{1}{2} & -\frac{i}{2} & \quad \\ \frac{i}{2} & \frac{1}{2} & \quad \\ \quad & \quad & 1\end{bmatrix}
+\end{align*}
+将$P_{2}$，$P_{3}$,$P_{5}$作用于$\{\hat{e}_{1}, \hat{e}_{2}, \hat{e}_{3}\}$上:
+\begin{align*}
+P_{2}\begin{pmatrix} \hat{e}_{1} \\ \hat{e}_{2} \\ \hat{e}_{3} \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ \hat{e}_{3} \end{pmatrix} \quad
+P_{3}\begin{pmatrix} \hat{e}_{1} \\ \hat{e}_{2} \\ \hat{e}_{3} \end{pmatrix} = \begin{pmatrix} \frac{1}{2}(\hat{e}_{1}-i\hat{e}_{2}) \\ \frac{i}{2}(\hat{e}_{1}-i\hat{e}_{2}) \\ 0 \end{pmatrix} \quad
+P_{2}\begin{pmatrix} \hat{e}_{1} \\ \hat{e}_{2} \\ \hat{e}_{3} \end{pmatrix} = \begin{pmatrix} \frac{1}{2}(\hat{e}_{1}+i\hat{e}_{2}) \\ \frac{i}{2}(\hat{e}_{1}+i\hat{e}_{2}) \\ 0 \end{pmatrix}
+\end{align*}
+$\therefore$ 我们可以选取$\hat{e}_{3}$为$D_{2}$，$\hat{e}_{1}-i\hat{e}_{2}$为$D_{3}$，$\hat{e}_{1}+i\hat{e}_{2}$为$D_{5}$，而约化基矢选为$\{\hat{e}_{3}, \hat{e}_{1}-i\hat{e}_{2}, \hat{e}_{1}+i\hat{e}_{2}\}$。\\
+~\\
+~\\
+~\\
+\textbf{2.12 \quad 证明直积群的所有不等价不可约表示均可由两直因子群的不等价不可约表示的直积得到。}\\
+~\\
+证明：设$G = G^{a} \otimes G^{b}$，$G^{a}$的不可约表示$D^{a}$为$l_{a}$维，$G^{b}$的不可约表示$D^{b}$为$l_{b}$维，$G$的表示为$D$，$L_{i} = l_{a}l_{b}$，有$\displaystyle \sum_{g=1}^{r} L_{i}^{2} = g_{a}g_{b}$，则有
+\begin{equation}
+\sum_{a=1}^{r_{a}} l_{a}^{2} \sum_{b=1}^{r_{b}} l_{b} = g_{a}g_{b} = \sum_{a=1,b=1}^{r_{a},r_{b}} L_{i}^{2} = \sum_{i=1}^{r_{a}r_{b}} L_{i}^{2}
+\end{equation}
+$\therefore r=r_{a}r_{b}$，即直因子群的所有不可约表示的个数等于直因子群不可约表示个数之积。\\
+~\\
+~\\
+~\\
+\textbf{2.13 \quad 求出$C_{3v}$群的类特征标表及所有不可约表示的矩阵形式。}\\
+~\\
+解：
+\begin{equation}
+C_{3h} = \{e, c_{3}, c_{3}^{2}, \sigma_{1}, \sigma_{2}, \sigma_{3}\}
+\end{equation}
+$C_{3v}$群可分为三个类：$\{e\}$，$\{c_{3}, c_{3}^{2}\}$和$\{\sigma_{1}, \sigma_{2}, \sigma_{3}\}$，$g=6=1^{2}+1^{2}+2^{2}$，包含三个不可约表示，维数分别为$1$，$1$和$2$，其中一个是单位表示。\\
+$\therefore$
+\begin{longtable}{c|ccc}
+\caption{$C_{3v}$群的类特征标表}\\
+$C_{3}$ & $e$ & $c_{3}$ & $c_{3}^{2}$\\  
+		\hline  
+		$\chi^{(1)}$ & $1$  & $1$ & $1$ \\  
+		$\chi^{(2)}$ & $1$  & $-1$ & $1$ \\ 
+		$\chi^{(3)}$ & $2$ & $1$ & $0$ \\ 
+\end{longtable}
+由特征标正交性定理$\displaystyle \sum_{R} \chi^{i*}(R)\chi^{j}(R) = g\delta_{ij}$得：\\
+$\bullet$ 一维时特征标计委表示矩阵；\\
+$\bullet$ 二维时，选择$\{\hat{e}_{1}, \hat{e}_{2}\}$作为基矢：
+$\therefore$
+\begin{align*}
+&D^{(3)}(e) = \begin{bmatrix} 1 & \quad \\ \quad & 1 \end{bmatrix} \quad D^{(3)}(\sigma_{1}) = \begin{bmatrix} -1 & \quad \\ \quad & 1 \end{bmatrix} \\
+&D^{(3)}(c_{3}) = \begin{bmatrix} -\frac{1}{2} & -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} & -\frac{1}{2} \end{bmatrix} \quad D^{(3)}(c_{3}^{2}) = \begin{bmatrix} -\frac{1}{2} & \frac{\sqrt{3}}{2} \\ -\frac{\sqrt{3}}{2} & -\frac{1}{2} \end{bmatrix} \\
+&D^{(3)}(\sigma_{2}) = \begin{bmatrix} \frac{1}{2} & \frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} & -\frac{1}{2} \end{bmatrix} \quad D^{(3)}(\sigma_{3}) = \begin{bmatrix} \frac{1}{2} & -\frac{\sqrt{3}}{2} \\ -\frac{\sqrt{3}}{2} & -\frac{1}{2} \end{bmatrix} \\
+\end{align*}
+~\\
+~\\
+~\\
+\textbf{2.14 \quad 求出$C_{4v}$群的类特征标表。}\\
+~\\
+解：$C_{4v}$群有$5$个类：$\{e\}$，$\{c_{4},c_{4}^{3}\}$，$\{c_{4}^{2}\}$，$\{\sigma_{\mu},\sigma_{\nu}\}$，$\{m_{x},m_{y}\}$ \\
+由特征标的正交性与完备性定理得
+\begin{equation}
+\left\{
+\begin{aligned}
+&\sum_{i=1}^{r}h_{i} \chi^{i*}(c_{l})\chi^{j}(c_{m}) = g\delta_{lm}\\
+&\sum_{R} \chi^{i*}(R)\chi^{j}(R) = g\delta_{ij}
+\end{aligned}
+\right.
+\end{equation}
+以及同态关系
+\begin{align*}
+&\chi(e) = \chi(c_{4})\chi(c_{4}^{3}) = 1 \quad \chi(c_{4})^{2} = \chi(c_{4})\chi(c_{4}) = 1\\
+&\chi(c_{4}) = \chi(c_{4}^{3}) = \pm1 \\
+&\chi(m_{x})^{2} = \chi(m_{y})^{2} = 1 \quad \chi(\sigma_{\mu})^{2} = \chi(\sigma_{\nu})^{2} = 1
+\end{align*}
+由$g = 1^{2} + 1^{2} + 1^{2} + 1^{2} + 2^{2} = 8$，共有四个一维表示和一个二维表示。\\
+$\therefore$ $C_{4v}$群的类特征标表为 \\
+\begin{longtable}{c|cccccc}
+\caption{$C_{4v}$群的类特征标表}\\
+	$C_{4v}$ & $\{e\}$ & $\{c_{4},c_{4}^{3}\}$ & $\{c_{4}^{2}\}$ & $\{\sigma_{\mu},\sigma_{\nu}\}$ & $\{m_{x},m_{y}\}$ \\
+	\hline
+	$\chi^{(1)}$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+	$\chi^{(2)}$ & $1$ & $1$ & $1$ & $-1$ & $-1$ \\
+	$\chi^{(3)}$ & $1$ & $-1$ & $1$ & $1$ & $-1$ \\
+	$\chi^{(4)}$ & $1$ & $-1$ & $1$ & $-1$ & $1$ \\
+	$\chi^{(5)}$ & $2$ & $0$ & $-2$ & $0$ & $0$ \\
+\end{longtable}
+~\\
+~\\
+~\\
+\textbf{2.15 \quad 求$D_{4}$群的特征标表及在二维空间$\displaystyle \left\{\frac{2}{\sqrt{\pi}}x , \frac{2}{\sqrt{\pi}}y\right\}$上的表示。}\\
+~\\
+解：
+\begin{equation}
+D_{4} = \{e, c_{4}, c_{4}^{2}, c_{4}^{3}, c_{2}^{(x)}, c_{2}^{(y)}, c_{2}^{(\mu)}, c_{2}^{(\nu)}\}
+\end{equation}
+$\because C_{4v} \cong D_{4}$，$\therefore$ $D_{4}$群的特征标表为 \\
+\begin{longtable}{c|cccccc}
+\caption{$D_{4}$群的特征标表}\\
+	$D_{4}$ & $\{e\}$ & $\{c_{4},c_{4}^{3}\}$ & $\{c_{4}^{2}\}$ & $\{c_{2}^{(x)}, c_{2}^{(y)}\}$ & $\{c_{2}^{(\mu)}, c_{2}^{(\nu)}\}$ \\
+	\hline
+	$\chi^{(1)}$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+	$\chi^{(2)}$ & $1$ & $1$ & $1$ & $-1$ & $-1$ \\
+	$\chi^{(3)}$ & $1$ & $-1$ & $1$ & $1$ & $-1$ \\
+	$\chi^{(4)}$ & $1$ & $-1$ & $1$ & $-1$ & $1$ \\
+	$\chi^{(5)}$ & $2$ & $0$ & $-2$ & $0$ & $0$ \\
+\end{longtable}
+下面求$D_{4}$群在$\displaystyle \left\{\frac{2}{\sqrt{\pi}}x , \frac{2}{\sqrt{\pi}}y\right\}$上的表示：显然有$T(e) = \begin{bmatrix} 1 & \quad \\ \quad & 1 \end{bmatrix}$，以及
+\begin{equation}
+\bm{r} = x\hat{e}_{1}+y\hat{e}_{2} \longrightarrow \left\{ \begin{aligned}
+u_{1}(\bm{r}) &= \frac{2}{\sqrt{\pi}}x \\
+u_{2}(\bm{r}) &= \frac{2}{\sqrt{\pi}}y
+\end{aligned} \right.
+\end{equation}
+$\because \displaystyle c_{4}^{3}\bm{r} = c_{4}^{3}\left(x\hat{e}_{1}+y\hat{e}_{2}\right) = y\hat{e}_{1}-x\hat{e}_{2}$，\\
+$\therefore$
+\begin{equation}
+T(c_{4}) u_{1}(\bm{r}) = u_{2}(\bm{r}) \quad T(c_{4}) u_{2}(\bm{r}) = -u_{1}(\bm{r})
+\end{equation}
+$\therefore$ $T(c_{4}) = \begin{bmatrix} \quad & -1 \\ 1 & \quad \end{bmatrix}$，同理可得$T(c_{4}^{2}) = \begin{bmatrix} -1 & \quad \\ \quad & -1 \end{bmatrix}$，$T(c_{4}) = \begin{bmatrix} \quad & 1 \\ -1 & \quad \end{bmatrix}$。以及	
+\begin{align*}
+&T(c_{2}^{(x)}) = \begin{bmatrix} -1 & \quad \\ \quad & 1 \end{bmatrix} \quad T(c_{2}^{(y)}) = \begin{bmatrix} 1 & \quad \\ \quad & -1 \end{bmatrix} \\
+&T(c_{2}^{(\mu)}) = \begin{bmatrix} \quad & 1 \\ 1 & \quad \end{bmatrix} \quad T(c_{2}^{(\nu)}) = \begin{bmatrix} \quad & -1 \\ -1 & \quad \end{bmatrix}
+\end{align*}
+~\\
+~\\
+~\\
+\textbf{2.16* \quad 求$D_{3}$（或$C_{3v}$）的正规表示（正则表示）。}\\
+~\\
+解：由正规表示的定义$\displaystyle \hat{T}\vec{R} = \sum_{\vec{S}}\vec{S}D^{r}(T)_{SR} = \sum_{\vec{S}}\delta_{S,TR}\vec{S}$\\
+$D_{3}$（或$C_{3v}$）的正规表示（正则表示）为
+\begin{equation}
+D^{r}(e)=\left[\begin{matrix} 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0  & 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 0 & 1 \end{matrix}\right]
+\end{equation}
+
+\begin{equation}
+D^{r}(c_{3})=\left[\begin{matrix}0 & 0  & 1 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 &1 & 0 & 0 \end{matrix}\right], \;
+D^{r}(c'_{2})=\left[\begin{matrix} 0 & 0 & 0 &1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 0 & 1\\ 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0  & 1 & 0 & 0 & 0 \end{matrix}\right]
+\end{equation}
+
+\begin{equation}
+D^{r}(c^{2}_{3}) = D^{r}(c_{3})^{2} = \left[\begin{matrix}0 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & 0 \end{matrix}\right], \;
+D^{r}(c''_{2}) = D^{r}(c'_{2}) D^{r}(c_{3}) \left[\begin{matrix}0 & 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 &1 & 0 & 0\\ 0 & 0  & 1 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 & 0 & 0 \\0 & 1 & 0 & 0 & 0 & 0 \end{matrix}\right]
+\end{equation}
+
+\begin{equation}
+D^{r}(c'''_{2}) = D^{r}(c'_{2}) D^{r}(c^{2}_{3}) = \left[\begin{matrix}0 & 0 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & 0\\ 0 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 & 0 & 0 \end{matrix}\right]
+\end{equation}
+
+
+\newpage
+\section{第三至六章习题}
+~\\
+~\\
+~\\
+\textbf{3.1 \quad 写出$SO(2)$群的无穷小算符在一般函数空间（基函数为$f(x,y,z)$ ）的算符形式。}\\
+~\\
+解：选择$C_{z}(\phi)$为旋转轴，则有
+\begin{align*}
+C_{z}(\phi)f(\rho,\phi) &= f(\rho,\theta-\phi) = f(\rho,\theta+(-\phi)) f(\rho,\theta) + \frac{\partial f(\rho,\theta)}{\partial\theta}(-\phi) \\
+&= \left( 1-\phi\frac{\partial}{\partial\theta} \right) f(\rho,\theta)
+\end{align*}
+$\therefore$
+\begin{equation}
+C_{z}(\phi) = 1 + \chi\phi = 1 + \left(-\frac{\partial}{\partial\theta}\right)\phi
+\end{equation}
+$\therefore$
+\begin{equation}
+\chi = -\frac{\partial}{\partial\theta} = -\left( \frac{\partial}{\partial x}\frac{\partial x}{\partial\theta}+\frac{\partial}{\partial y}\frac{\partial y}{\partial\theta} \right) = y\frac{\partial}{\partial x} - x\frac{\partial}{\partial y}
+\end{equation}
+~\\
+~\\
+~\\
+\textbf{3.2 \quad 确定$SO(2)$群的不可约表示及其特征标。}\\
+~\\
+解：$SO(2)$群为Abel群，不可约表示均为一维，$C_{z}(\alpha)C_{z}(\beta)=C_{z}(\alpha+\beta)$，令$\beta\rightarrow0$，对$\beta$求导得
+\begin{align*}
+C_{z}(\alpha) \left.\frac{\partial C_{z}(\beta)}{\partial \beta}\right|_{\beta\rightarrow0} &= \left.\frac{\partial C_{z}(\alpha+\beta)}{\partial (\alpha+\beta)} \frac{\partial (\alpha+\beta)}{\partial \beta}\right|_{\beta\rightarrow0} = \left.\frac{\partial C_{z}(\alpha+\beta)}{\partial (\alpha+\beta)}\right|_{\beta\rightarrow0} \\
+&= \frac{\partial C_{z}(\alpha)}{\partial \alpha}
+\end{align*}
+$\Longrightarrow$
+\begin{equation}
+C_{z}(\alpha)C'_{z}(0) = \frac{\partial C_{z}(\alpha)}{\partial \alpha} \Rightarrow C_{z}(\alpha) = Ae^{C'_{z}(0)\alpha}
+\end{equation}
+$\because C_{z}(0)=1$，$\therefore A=C_{z}(0)=1$。\\
+又$\because C_{z}(\alpha=2\pi)=C_{z}(\alpha)$，$\therefore C'_{z}(0)=im$。所以不可约表示$C_{z}(\phi)=e^{im\phi}$，对应的特征标为$\chi(\phi)=e^{im\phi}$。\\
+~\\
+~\\
+~\\
+\textbf{3.3 \quad 证明不存在$n > 3$的$D_{nd}$群，并分析$D_{nd}$群中类的个数。}\\
+~\\
+解：相邻二重轴的角分线与主轴所在平面对应镜面$\sigma_{d}$，共有$n$个，其中$\displaystyle \alpha = \frac{\pi}{n}$，$\displaystyle \phi = \frac{\alpha}{2} = \frac{\pi}{2n}$。\\
+$\because \sigma_{d}\sigma_{h} = c_{2}^{*}$ \\
+$\therefore$
+\begin{equation}
+c_{2}\sigma_{d} = c_{2}c_{2}^{*}\sigma_{h} = C_{z}(2\phi)\sigma_{h} = C_{z}(\alpha)\sigma_{h} = S_{2n}
+\end{equation}
+$\therefore$ z轴既是$2n$重旋转轴又是$2n$重反射轴，$\therefore n=2$或$n=3$，$n=1$时无$\sigma_{d}$。$g=4n$，包括$D_{n}(2n\text{个})+\sigma_{d}(n\text{个})+S_{2n}(n\text{个})$。\\
+~\\
+~\\
+~\\
+\textbf{3.4 \quad 有人说，第二类晶体点群都是通过第一类点群和$C_{i}$的直积得到的，你认为此说法正确吗？}\\
+~\\
+解：不正确。\\
+$\because$ $C_{3h} = C_{3} \otimes C_{1h}, \, C_{1h}=\{e,\sigma_{h}\}$，而$\sigma_{h}$属于第二类点群，\\
+$\therefore$ 不正确。
+~\\
+~\\
+~\\
+\textbf{3.5 \quad 证明：晶体的单电子哈密顿量在点群操作下形式不变，即，对于$\bm{r'} = R\bm{r}$（R为点群群元算符），有$H(\bm{r}') = H(\bm{r})$。}\\
+~\\
+解：哈密顿量$H$动能项为$\displaystyle \hat{T}(\bm{r}) = -\frac{\hbar^{2}}{2m}\sum_{i}\frac{\partial^{2}}{\partial x_{i}^{2}}$，对应$\displaystyle \hat{T}(R\bm{r}) = \hat{T}(\bm{r'}) = -\frac{\hbar^{2}}{2m}\sum_{i}\frac{\partial^{2}}{\partial {x'}_{i}^{2}}$，则有 \\
+（1）对平移操作$\bm{r'} = \bm{r} + \bm{t}$：
+\begin{equation}
+\frac{\partial}{\partial x'_{i}} = \frac{\partial}{\partial x} \Longrightarrow \frac{\partial^{2}}{\partial {x'}_{i}^{2}} = \frac{\partial^{2}}{\partial x_{i}^{2}}
+\end{equation}
+（2）对反演操作$\bm{r'} = -\bm{r}$：
+\begin{equation}
+\frac{\partial}{\partial x'_{i}} = -\frac{\partial}{\partial x} \Longrightarrow \frac{\partial^{2}}{\partial {x'}_{i}^{2}} = \frac{\partial^{2}}{\partial x_{i}^{2}}
+\end{equation}
+（3）对旋转操作$\bm{r'} = R\bm{r}$：$\displaystyle x'_{j} = \sum_{i}R_{ji}x_{i}$
+\begin{align*}
+\frac{\partial}{\partial x_{i}} &= \sum_{j} \frac{\partial}{\partial x'_{j}} \left(\frac{\partial x'_{j}}{\partial x_{i}}\right) = \sum_{j} \frac{\partial}{\partial x'_{j}}R_{ji} \\
+\Longrightarrow \frac{\partial^{2}}{\partial x_{i}^{2}} &= \sum_{j}R_{ji}\frac{\partial}{\partial x'_{j}} \sum_{j'}R_{j'i}\frac{\partial}{\partial x'_{j'}} = \sum_{j,j'} R_{ji}R_{j'i} \frac{\partial}{\partial x'_{j}}\frac{\partial}{\partial x'_{j'}} \\
+&= \sum_{j}\delta_{jj'}\frac{\partial}{\partial x'_{j}}\frac{\partial}{\partial x'_{j'}} = \sum_{j}\frac{\partial}{\partial x'_{j}}\frac{\partial}{\partial x'_{j}} = \frac{\partial^{2}}{\partial {x'}_{i}^{2}}
+\end{align*}
+$\therefore H(\bm{r}') = H(R\bm{r}) = H(\bm{r})$。\\
+~\\
+~\\
+~\\
+\textbf{3.6 \quad 写出晶体点群$C_{2h}$和$D_{2}$的特征标表。}\\
+~\\
+解：
+\begin{equation}\nonumber 		% \nonumber使该公式不编号
+C_{2h} = C_{2} \otimes \{e,I\} =\{e,c_{2},\sigma_{h},c_{2}\sigma_{h}\} \qquad D_{2} = \{e,c_{2},c_{2}',c_{2}''\}
+\end{equation}
+在二维空间上，对应的表示为\\
+显然有$C_{2h} \cong D_{2}$，二者特征标表相同。\\		 % \cong表示同态符号
+
+\begin{minipage}{\textwidth} 	% 并排插入表格
+\begin{minipage}[t]{0.5\textwidth}
+  \centering
+	\makeatletter\def\@captype{table}\makeatother\caption{$C_{2h}$特征标表}
+	~\\
+	\begin{tabular*}{5cm}{l|cccc}  % lcr分别代表元素居左中右对齐
+		$C_{2h}$ & $e$ & $c_{2}$ & $\sigma_{h}$ & $c_{2}\sigma_{h}$\\  
+		\hline  
+		$\chi^{(1)}$ & $1$  & $1$ & $1$ & $1$\\  
+		$\chi^{(2)}$ & $1$  & $-1$ & $1$ & $-1$\\ 
+		$\chi^{(3)}$ & $1$ & $1$ & $-1$ & $-1$\\ 
+		$\chi^{(4)}$ & $1$ & $-1$ & $-1$ & $1$\\ 
+\end{tabular*}
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+   \centering
+	\makeatletter\def\@captype{table}\makeatother\caption{$D_{2}$特征标表}
+	~\\
+	\begin{tabular*}{5cm}{l|cccc}  % lcr分别代表元素居左中右对齐
+	$D_{2}$ & $e$ & $c_{2}$ & $c_{2}'$ & $c_{2}''$\\  
+	\hline  
+	$\chi^{(1)}$ & $1$  & $1$ & $1$ & $1$\\  
+	$\chi^{(2)}$ & $1$  & $-1$ & $1$ & $-1$\\ 
+	$\chi^{(3)}$ & $1$ & $1$ & $-1$ & $-1$\\ 
+	$\chi^{(4)}$ & $1$ & $-1$ & $-1$ & $1$\\ \end{tabular*}
+\end{minipage}
+\end{minipage}
+~\\
+~\\
+~\\
+\textbf{3.7 \quad 证明每个转动平移算符都有逆元存在，形式为$\{R|t\}^{-1}=\{R^{-1}|-R^{-1}t\}$。}\\
+~\\
+解：设$\{R|t\}^{-1}=\{A|B\}$，则有
+\begin{align*}
+\bm{r} &= \{R|t\}^{-1}\{R|t\}\bm{r} = \{R|t\}^{-1}(R\bm{r}+\bm{t}) = \{A|B\}(R\bm{r}+\bm{t}) \\
+&= AR\bm{r}+A\bm{t}+\bm{B}
+\end{align*}
+$\therefore A=R^{-1}$，$B=-R^{-1}t$，$\therefore \{R|t\}^{-1}=\{R^{-1}|-R^{-1}t\}$。\\
+~\\
+~\\
+~\\
+\textbf{3.8 \quad 原子中有一个处于$d$态的单价电子，若将该原子置于具有点群$O_{h}$对称性的晶体场中，此$d$态电子的能级是否会分裂？若分裂，该如何分裂？}\\
+~\\
+解：会发生能级分裂，其中一个能级为二重简并，另一个为三重简并。原因如下：\\
+~\\
+$d$态电子轨道角动量量子数$l=2$，其电子轨道波函数具有$5$重简并，原子简并能级对应的哈密顿算符群为$SO(3)$群，分别对应自旋磁量子数$m=2,1,0,-1,-2$。
+自由运动$d$态电子的哈密顿量记为$H_{0}$，代入薛定谔方程可得：\\
+\begin{equation}
+\hat{H_{0}}\Phi_{n\alpha} = \epsilon_{n}\Phi_{n\alpha}
+\end{equation}
+其中$n$为主量子数；$\alpha = 1,2, \, ... \,, \gamma$表示自旋量子数可能的取值；$\Phi_{n\alpha}$为相应自旋量子数对应的波函数，具体形式为$\Phi_{nlm} = R(r)Y_{lm}(\theta,\phi)$。\\
+~\\
+在$O_{h}$晶体场中，哈密顿算符群由$SO(3)$群变为$O_{h}$群，设晶体场对电子的作用为$H'$，体系总哈密顿量为$H = H_{0} + \lambda H'$，其中$\lambda$是一个可调节的微小参数。与自由电子本征能量相比，晶体场对电子的作用$H'$可视为微扰，所以我们可以利用定态简并微扰理论求解：
+\begin{equation}
+\hat{H}\Psi_{n} = E_{n}\Psi_{n}
+\end{equation}
+可得
+\begin{equation}
+E_{n} = E_{n}^{(0)} + \lambda E_{n}^{(1)} + \cdot\cdot\cdot \qquad \Phi_{n} = \Phi_{n}^{(0)} + \lambda\Phi_{n}^{(1)} + \cdot\cdot\cdot
+\end{equation}
+由于零级近似只与主量子数相关，故能级劈裂不涉及到能量的零级近似，此时我们只需考虑能量的一级近似项$\displaystyle E_{n}^{(1)} = <\Phi_{n}^{(0)}|\hat{H'}|\Phi_{n}^{(0)}>$，进而有$\displaystyle \triangle E = E_{n}^{(1)}(A) - E_{n}^{(1)}(B), A,B \in O_{h}$。\\
+~\\
+结合结构化学的知识和实验观测结果，$O_{h}$晶体场主要分为两类，一类是以八面体配合物为主正八面体场，另一类是以四面体配合物为主正四面体场。$O_{h}$群具有$48$个群元，可分为十个类。同时从类特征标表中可以发现，$O_{h}$群包含两个一维不可约表示，一个二维不可约表示和两个三维不可约表示，其中二维不可约表示对应的操作为$e_{g}$，两个三维不可约表示对应的操作是$t_{1g}$和$t_{2g}$。\\
+~\\
+由约化系数公式
+\begin{equation}
+a_{i} = \frac{1}{g}\sum_{R}\chi^{i}(R)^{*}\chi^{i}(R)
+\end{equation}
+可得$D_{SO(3)} = D^{3}_{O_{h}} \oplus D^{5}_{O_{h}}$，其中$D^{3}_{O_{h}} = D^{3}(e_{g}), D^{5}_{O_{h}} = D^{5}(t_{2g})$。\\
+~\\
+由$\displaystyle E_{n}^{(1)}(O_{h}) = <\Phi_{n}^{(0)}|\hat{H'}(O_{h})|\Phi_{n}^{(0)}>$，除$e_{g}$和$t_{2g}$以外其余群操作均不能解除简并，有$E_{n}^{(1)}(g(O_{h})) = 0$。将零级近似波函数代入$E_{n}^{(1)}(e_{g})$和$E_{n}^{(1)}(t_{2g})$，得：\\
+\begin{equation}
+E_{n}^{(1)}(e_{g}) = E_{1} \qquad E_{n}^{(1)}(t_{2g}) = E_{2}
+\end{equation}
+$e_{g}$作用于$d_{x^{2}-y^{2}}$和$d_{z^{2}}$两个轨道分量上（对应$m=2$和$m=1$），而$t_{2g}$作用于$d_{xy}$，$d_{xz}$和$d_{yz}$三个轨道分量上（对应$m=0$，$m=-1$和$m=-2$）。\\
+(1) 对于正八面体场，$E_{1} > E_{2}$，$e_{g}$为高能级，能级分裂形成的能级差为
+\begin{equation}
+\triangle E = E_{n}^{(1)}(e_{g}) - E_{n}^{(1)}(t_{2g}) = E_{1} - E_{2} = 10D(q)
+\end{equation}
+(2) 对于正四面体场，$E_{1} > E_{2}$，$t_{2g}$为高能级，能级分裂形成的能级差为
+\begin{equation}
+\triangle E = E_{n}^{(1)}(t_{2g}) - E_{n}^{(1)}(e_{g}) = E_{2} - E_{1} = 10D(q)
+\end{equation}
+其中$D(q)$是一个与磁矩$\bm\mu$相关，具有能量量纲的函数，$D(q)$具体数值与构成晶体场的物质结构有关。\\
+~\\
+综上所述，$d$态电子的能级在具有点群$O_{h}$对称性的晶体场中会分裂成两个简并能级，其中一个能级具有二重简并，而另一个能级则具有三重简并。\\
+
+{\color{red}3.8我直接套用了已有的结论，可能有不对的地方，欢迎与我一起讨论。}
+
+\end{spacing} 		% 结束行距 
+
+\end{document} 
+
+ 
