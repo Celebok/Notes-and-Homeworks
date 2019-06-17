@@ -1,0 +1,157 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{url}		% 插入网址超链接
+\usepackage{amsmath,amsthm,bm}             % 数学符号与特殊字符
+\usepackage{caption} 			% 插图和表格标题格式设置
+\usepackage{hyperref} 			%  创建超文本链接和PDF书签
+\usepackage{float}			% 设置插入图片格式，比如使插入图片紧跟在对应文字之后的用法时\begin{figure}[H] ... \end{figure}，处理图片使用，参考2012年第4题
+\usepackage{ragged2e}          % 两端对齐
+\usepackage{color}             	% 字体颜色
+\usepackage{indentfirst}		% 首行缩进
+\geometry{left=1.5cm,right=2.5cm,top=2.0cm,bottom=2.5cm}
+\usepackage{setspace}		%使用间距宏包
+\usepackage{mathrsfs}		% 花体字母，然后使用\mathscr{A}命令
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont[Mapping=tex-text]{Hoefler Text}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+\title{\textbf{Advanced Statistical Physics Homework}}
+\author{Tianxiao Liang \quad 2018322003 \\ \emph{Theoretical Center of Physics College, Jilin University}}
+%\date{}                                           % Activate to display a given date or no date
+
+\numberwithin{equation}{section}	 % 我们可使用amsmath 宏包提供的numberwithin命令来实现公式与章节的关联
+\allowdisplaybreaks[4]			 % 允许多行公式跨页
+
+\begin{document}
+\begin{spacing}{1.5}			% 行间距变为double-space
+\maketitle
+\setlength{\parindent}{0pt}	% 取消首行缩进，如果需要缩进，则将0pt设置为所需数量的pt，一般为2pt
+
+\newcommand*{\dif}{\mathop{}\!\mathrm{d}} 		% \mathop{}用来输出直立黑体的微分算子，如\mathop{d}，为了简略我们使用\dif代替\mathop{d}
+\newcommand*{\dps}{\displaystyle}				% 将\displaystyle的指令简化为\dps，功能仍为将格式规范
+\newtheorem{proof*}{Answer}					% 自定义proof证明环境，此处为不加证明的编号
+
+\textbf{1. Please calculate the average ensemble of a free particle placed	 in a cube with sides of length $\bm L$.} \\		% \top是转置符号
+~\\
+\begin{proof*}
+For this free particle, Hamiltonian is formed in $\dps \bm{\hat H} = -\frac{\hbar^{2}}{2m}\nabla^{2}$ , and its eigenfunctions is defined by $\dps \phi_{\bm k}(x,y,z) = \left<\bm r|\bm k\right> = \frac{e^{i\bm{k\cdot r}}}{L^{3/2}}$ . Besides that $\phi_{\bm k}(x,y,z)$ shall satisfy periodic boundary condition, we can get eigenenergy by solving Schrödinger equation :
+\begin{equation}
+\bm{\hat H} \phi_{\bm k} = E_{\bm k} \phi_{\bm k} \longrightarrow E_{\bm k} = \frac{\hbar^{2}k^{2}}{2m} , \; \bm{k} = (k_{x} + k_{y} +k_{z}) = \frac{2\pi}{L}(n_{x}+n_{y}+n_{z})
+\end{equation}
+which
+\begin{align*}
+E_{\bm k} &= \frac{\hbar^{2}k^{2}}{2m} \\
+\bm{k} &\equiv (k_{x}, k_{y}, k_{z}) = \frac{2\pi}{L}(n_{x}, n_{y}, n_{z}) \\
+(&n_{x}, n_{y}, n_{z}) = 0, \pm1, \pm2, \cdot\cdot\cdot
+\end{align*}
+Free particle partition function :
+\begin{equation}
+Z = Tr e^{-\beta\bm{\hat H}} = \sum_{k} \int e^{-\beta E_{k}}\phi^{*}_{\bm k}(\bm{r})\phi_{\bm k}(\bm{r})\dif\bm{r} = V\left(\frac{m}{2\pi\hbar^{2}\beta}\right)^{\frac{3}{2}}
+\end{equation}
+
+Operational representation of canonical ensemble :
+\begin{equation}
+\hat\rho = \frac{1}{Z}e^{-\beta\bm{\hat H}} = \sum_{\bm k}\left|\bm k\right> \frac{1}{Z}e^{-\beta\bm{\hat H}} \left<\bm k\right| = \sum_{\bm k}\left|\bm k\right> \frac{1}{Z}e^{-\beta E_{k}} \left<\bm k\right|
+\end{equation}
+
+Under coordinate representation, we can describe matrix elements by :
+\begin{align}\nonumber 		% \nonumber使该公式不编号
+\left<\bm r\right| \hat\rho \left|\bm{r'}\right> &= \sum_{\bm k}\left<\bm{r}|\bm k\right> \frac{1}{Z}e^{-\beta\bm{\hat H}} \left<\bm k|\bm{r'}\right> = \sum_{\bm k} \phi^{*}_{\bm k}(\bm{r}) \frac{1}{Z}e^{-\beta\bm{\hat H}} \phi_{\bm k}(\bm{r}) \\
+&= \frac{1}{V}\exp\left(-\frac{m(r-r')^{2}}{2\hbar^{2}\beta}\right)
+\end{align}
+
+The average ensemble of Hamiltonian is :
+\begin{align}\nonumber 		% \nonumber使该公式不编号
+\left<\bm{\hat H}\right> &= Tr(\hat\rho \bm{\hat H}) = -\frac{\partial}{\partial\beta} \ln\left[ Tr(e^{-\beta\bm{\hat H}})\right] = -\frac{\partial}{\partial\beta}\ln Z\\
+&= \frac{3}{2}k_{B}T
+\end{align}
+
+\end{proof*}
+~\\
+~\\
+~\\
+
+
+\textbf{2. Please calculate the relationship between average population number $c$ with temperature and specific heat capacity of Bose-Einstein condensation.} \\		% \top是转置符号
+~\\
+\begin{proof*}
+The equation of state for ideal Boson gas :
+\begin{equation}
+\label{BosonGas}
+\left\{		% 大括号公式的写法
+\begin{aligned}
+\dps
+&\frac{P}{k_{B}T} =\frac{1}{\lambda^{3}}g_{5/2}(z) - \frac{1}{V}\ln(1-z)\\
+~\\
+&\frac{1}{v} =\frac{1}{\lambda^{3}}g_{3/2}(z) + \frac{1}{V}\frac{z}{1-z}
+\end{aligned}
+\right.	% 注意这个点不要落下\right.	
+\end{equation}
+
+For specific capacity is $\dps v = \frac{V}{N}$ , mean thermal wavelength is $\dps \lambda = \sqrt{\frac{2\pi\hbar^{2}}{mk_{B}T}}$ , and fugacity $z = e^{\beta\mu}$ , which $\mu$ is chemical potential. For Boson gas we have : $0 \le z \le 1$ , it's obvious that $z \ge 0$ , and we can confirm it by average population number $\dps \left<n_{0}\right> = \frac{z}{1-z} \ge 0$ . $g_{n}(z)$ is generated by :
+\begin{equation}
+g_{n}(z) = \sum^{\infty}_{l=1}\frac{z^{l}}{l^{n}}
+\end{equation}
+when $z$ valued from $0$ to $1$ , $g_{n}(z)$ is positive monotone increasing and it's a limited function. If $n > 1$ , $g_{n}(z)$ would turn into Riemann-$\zeta$ function :
+
+\begin{equation}
+g_{n}(1) = \sum^{\infty}_{l=1}\frac{1}{l^{n}} = \zeta(n) \quad (n > 1)
+\end{equation}
+
+And $g_{n}(z)$ diverged when $n \le 1$ , so we have :
+\begin{equation}
+g_{3/2}(z) \le g_{3/2}(1) = \zeta(3/2) = 2.612 ...
+\end{equation}
+
+Now we'll continue to discuss conditions that produce condensation. First, we can rewrite the second formula of Equ.\ref{BosonGas} :
+\begin{equation}
+\label{BosonGas2}
+\lambda^{3}\frac{\left<n_{0}\right>}{V} = \frac{\lambda^{3}}{v} - g_{3/2}(z)
+\end{equation}
+When $\dps \frac{\left<n_{0}\right>}{V} > 0$ , the condensation achieved, and it must be true when $\dps \frac{\lambda^{3}}{v} > g_{3/2}(1)$ . \\
+~\\
+Discuss the critical condition :
+\begin{equation}
+\frac{\lambda_{c}^{3}}{v} = g_{3/2}(z)
+\end{equation}
+then we will get critical temperature and critically specific heat capacity :
+\begin{equation}
+T_{c} = \frac{2\pi\hbar^{2}}{mk_{B} [vg_{3/2}(1)]^{2/3}} \qquad v_{c} = \frac{\lambda^{3}}{g_{3/2}(1)}
+\end{equation}
+When $T < T_{c}$ ( $v$ is constant ) or $v < v_{c}$ ( $T$ is constant ) , Bose-Einstein condensation occurred. That is to say creation conditions of Bose-Einstein condensation are low temperature and high density. \\
+~\\
+Besides, when $V \rightarrow \infty$ , fugacity $z$ tends to \\
+\begin{equation}
+z=\left\{		% 大括号公式的写法
+\begin{aligned}
+\dps
+& 1  \qquad &\left( \frac{\lambda^{3}}{v} \ge g_{3/2}(1) \right) \\
+~\\
+\text{The roots of} \; & g_{3/2}(z) = \frac{\lambda^{3}}{v} &\left( \frac{\lambda^{3}}{v} \le g_{3/2}(1) \right)
+\end{aligned}
+\right.	% 注意这个点不要落下\right.
+\end{equation}
+~\\
+And from Equ.\ref{BosonGas2} , we have
+\begin{equation}
+\frac{\left<n_{0}\right>}{N}= \left\{		% 大括号公式的写法
+\begin{aligned}
+\dps
+1 - \left(\frac{T}{T_{c}}\right)^{\frac{3}{2}} &= 1 - \frac{v}{v_{c}} &\left( \frac{\lambda^{3}}{v} \ge g_{3/2}(1) \right) \\
+~\\
+& 0  \qquad &\left( \frac{\lambda^{3}}{v} \le g_{3/2}(1) \right)
+\end{aligned}
+\right.	% 注意这个点不要落下\right.
+\end{equation}
+
+\end{proof*}
+
+
+
+\end{spacing} 		% 结束行距 
+\end{document}  
